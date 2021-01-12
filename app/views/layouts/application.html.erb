@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Techjobgame</title>
+    <title>Tech Job Corp: The Game</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +9,33 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body> 
+    <header>
+      <nav aria-label="Account menu">
+        <ul>
+        <% if @current_user.present? %>
+          <li id="greeting-user">
+            <%= @current_user.username %>
+          </li>
+          <li>
+            <%= link_to 'Logout', login_path, method: 'delete' %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to 'Login', login_path %>
+          </li>
+          <li>
+            <%= link_to 'Join', new_user_path  %>
+          </li>
+        <% end %>
+        </ul>
+      </nav>
+      </header>
+      <main>
+        <%= yield %>
+      </main>
+      <footer>
+        <small>&copy; <%= link_to "Brooke", "https://github.com/dutchessoflx", :target => "_blank" %>, <%= link_to "Lucy", "https://github.com/LucySE/", :target => "_blank" %>, <%= link_to "Manda", "https://github.com/nimisaya", :target => "_blank" %> and <%= link_to "Reece", "https://github.com/reecen96", :target => "_blank" %>, 2021</small>
+      </footer>
   </body>
 </html>
