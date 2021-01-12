@@ -55,3 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Add pry
 gem 'pry-rails'
+
+# HTTParty for making requests to the trivia API
+gem "httparty", "~> 0.18.1"
