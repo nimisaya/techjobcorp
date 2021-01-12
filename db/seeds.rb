@@ -8,25 +8,25 @@ print "Creating users..."
 
 User.create!(
     email: "reece@ga.com",
-    password_digest: 'chicken',
+    password: 'chicken',
     username: 'reece'
 )
 
 User.create!(
     email: "lucy@ga.com",
-    password_digest: 'chicken',
+    password: 'chicken',
     username: 'lucy'
 )
 
 User.create!(
     email: "brooke@ga.com",
-    password_digest: 'chicken',
+    password: 'chicken',
     username: 'brooke'
 )
 
 User.create!(
     email: "manda@ga.com",
-    password_digest: 'chicken',
+    password: 'chicken',
     username: 'manda'
 )
 
