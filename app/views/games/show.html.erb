@@ -1,0 +1,16 @@
+<h1>Games#show</h1>
+
+
+<ul>
+<% @puzzle.each do |p| %>
+
+<p> <strong><%== p.question %> </strong></p>
+<li><%== p.solution %> </li>
+<li> <%== p.incorrect_a %> </li>
+<li> <%== p.incorrect_b %> </li>
+<li> <%== p.incorrect_c %> </li>
+<br>
+<%end%>
+</ul>
+
+<%# PLACEHOLDER: To view the game over page add /gameover to the end of this url %>

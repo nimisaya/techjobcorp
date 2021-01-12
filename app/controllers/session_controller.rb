@@ -12,7 +12,7 @@ class SessionController < ApplicationController
         session[:user_id] = user.id
   
         # Load page
-        redirect_to root_path
+        redirect_to new_game_path
       else
         # Create message to inform user login failed
         flash[:error] = 'Invalid email or password'

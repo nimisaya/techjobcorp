@@ -1,2 +1,4 @@
 class Puzzle < ApplicationRecord
-end
+    # Relationships
+    belongs_to :game
+  end

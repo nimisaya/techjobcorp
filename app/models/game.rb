@@ -1,2 +1,6 @@
 class Game < ApplicationRecord
-end
+    # Relationships
+    has_many :puzzles
+    belongs_to :user
+  end
+  
