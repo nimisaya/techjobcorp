@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  in_progress: false
+  game_time: 2021-01-12 23:34:15
+  score: 1
+
+two:
+  user_id: 1
+  in_progress: false
+  game_time: 2021-01-12 23:34:15
+  score: 1
