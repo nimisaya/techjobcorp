@@ -1,0 +1,37 @@
+<article>
+  <section>
+    <header>
+      <h1 class="page-title">Welcome to Tech Job Corp.!</h1>
+      <p>We're so happy you've decided to apply. Submit your resume below and we'll get back to you shortly (...probably just ghost you).</p>
+    </header>
+  </section>
+
+
+<% if @user.errors.full_messages.any? %>
+  <strong>Errors:</strong>
+  <ul>
+    <% @user.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end  %>
+  </ul>
+<% end %>
+
+<%# TODO: Move form to partial %>
+<%# Create account form %>
+<%= form_with model: @user, local: true do |f| %>
+  <%= f.label :username, 'Applicant name' %>
+  <%= f.text_field :username %>
+  <br>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <br>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <br>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <br>
+  <%= f.submit "Let's play", :class => 'button-primary' %>
+  <%= link_to 'Cancel', root_path, :class => 'button button-secondary' %>
+<% end %> 
+</article>
