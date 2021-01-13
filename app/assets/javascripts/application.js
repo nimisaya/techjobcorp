@@ -17,6 +17,8 @@
 
 let output = ""
 let my_json = ""
+let total_questions = 2
+let current_question = 0
 
 
 $(document).ready(function () {
@@ -25,33 +27,37 @@ $(document).ready(function () {
   console.log("ready!")
 
 console.log($)
- // output = ($.getJSON.done('/api/puzzles/'+game_id))
- // my_json = output.responseJSON
 
 
  function getSearchResults(){
-   $.getJSON('/api/puzzles/'+game_id).done( displaySearchResults ).fail( console.warn );
+     output = $.getJSON('/api/puzzles/'+game_id)
+  $.getJSON('/api/puzzles/'+game_id).done((data)=>{
+    console.log(data)
+    my_json=data
+    console.log(my_json)
+  })
 
  }; // getSearchResults()
 
-
-function displaySearchResults(){
-  console.log('displaySearchResults')
-  output = ($.getJSON.done('/api/puzzles/'+game_id))
-  my_json = output.responseJSON
-}
-
-})
-
+ // function set_api(){
+// my_json = output.responseJSON
+// total_questions = my_json.length
+// console.log("output:" + output)
+// console.log("my_json:" + my_json)
+// console.log("total_questions" + total_questions)
+//  }
 
 
 
 
+// function displaySearchResults(){
+//   console.log('displaySearchResults')
+//   output = ($.getJSON.done('/api/puzzles/'+game_id))
+//   my_json = output.responseJSON
+// }
 
 
 
-let current_question = 0
-let total_questions = my_json.length
 
 function update_question(){
 const check_question = my_json.questions[current_question]
@@ -80,4 +86,6 @@ $("#back" ).click(function() {
      update_question()
 
 }
+})
+
 })
