@@ -82,12 +82,12 @@ correct_answer = check_question.solution
 // IF statement that changes the interviewers face depending on the previous answer
 if(current_question != 0){
 if(correct === true){
-$('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
+$('#animation').attr("src","https://piskel-imgstore-b.appspot.com/img/9a414811-558c-11eb-b96b-3587bbd7da8a.gif")
 $('#answer').text('Your previous answer was correct!')
 }
 else {
-  $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
-  $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
+  $('#animation').attr("src","https://piskel-imgstore-b.appspot.com/img/dff8dfdc-558c-11eb-b412-3587bbd7da8a.gif")
+  $('#answer').text('Your previous answer was incorrect. The answer to the question ' + previous_question + ' was '+ correct_answer)
 }
 
 }
