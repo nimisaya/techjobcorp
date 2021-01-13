@@ -29,6 +29,8 @@ let current_question = 0
 //current score - updated when correct question is answered
 let current_score = 0
 let correct = false
+let previous_question = ""
+let correct_answer = ""
 
 
 $(document).ready(function () {
@@ -71,14 +73,18 @@ $('#incorrect_b').text(check_question.incorrect_b)
 $('#incorrect_c').text(check_question.incorrect_c)
 $('#current_score').text(current_score)
 
-
+previous_question = check_question.question
+correct_answer = check_question.solution
 // This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
 
 if(correct === true){
 $('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
+$('#answer').text('Your previous answer was correct!')
 }
 else {
   $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
+  $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
+
 
 }
 }
