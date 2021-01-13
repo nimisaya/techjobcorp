@@ -15,33 +15,50 @@
 //= require jquery_ujs
 //= require_tree .
 
+
+
+//========= GAMES.JS - WIll be moved to its own .js========//
+// initial output from JSON which is transfromed into an array
 let output = ""
+// array of questions
 let my_json = ""
+// total questions (questions.length) used for changing questions
 let total_questions = ""
-let current_question = 0
+//current question - used for changing pages
+let current_question = 1
+//current score - updated when correct question is answered
+let current_score = 0
 
 
 $(document).ready(function () {
 
+// actions function to retreive api data
   getSearchResults()
   console.log("ready!")
 
-console.log($)
+// checks is jquery is working
+  console.log($)
 
-
+//retrives APIs from http://localhost:3000/api/puzzles/:id
  function getSearchResults(){
+//game_id is retreived from the HTML
      output = $.getJSON('/api/puzzles/'+game_id)
+//outputs the API request and convers to an array (my_json)
   $.getJSON('/api/puzzles/'+game_id).done((data)=>{
     console.log(data)
     my_json=data
     console.log(my_json)
+//determins the total number of questions - sets variable
     total_questions=data.questions.length
   })
 
- };
+}; // end of getSearchResults
 
 
+// this function updates the Questions & Score when next/back is clicked
 function update_question(){
+
+// question is pulled using [current_question] as an index
 const check_question = my_json.questions[current_question]
 
 $('#question').text(check_question.question)
@@ -49,23 +66,35 @@ $('#solution').text(check_question.solution)
 $('#incorrect_a').text(check_question.incorrect_a)
 $('#incorrect_b').text(check_question.incorrect_b)
 $('#incorrect_c').text(check_question.incorrect_c)
+$('#current_score').text(current_score)
 }
 
 
 
+// next button
 $("#next").click(function() {
   console.log('NEXT')
+
+// checks if current page is less than maximum page (last question)
   if(current_question <= total_questions){
+//function checks which radio button has been clicked - adds score
+    check_radio()
+//adds +1 to current question
     current_question++
+//runs function to update shown question & score
     update_question()
     console.log(current_question)
 
   }
 })
 
+//back button
 $("#back" ).click(function() {
   console.log('back')
+//checks if current page is equal to or less than question 0 (index)
    if(current_question >= 0){
+//function checks which radio button has been clicked - adds score
+     check_radio()
      current_question--
      update_question()
      console.log(current_question)
@@ -73,4 +102,24 @@ $("#back" ).click(function() {
 }
 })
 
+
+// SCORE CHECK FUNCTION - FOR MANDAA //
+function check_radio() {
+// 1. checks if correct radio button has been checked
+   if($('#correct').is(':checked')) {
+// 2. if correct button has been checked add +100 to scores
+  current_score = current_score+100
+  console.log(current_score)
+  }
+//3. if incorrect button has been clicked minus 30 from the score
+  else{
+    current_score = current_score-30
+      console.log(current_score)
+  }
+}
+
 })
+
+
+// REECE'S WIP getting post working (anyone can continue this! <3)
+// $.post( "test.php", { score: current_score} )
