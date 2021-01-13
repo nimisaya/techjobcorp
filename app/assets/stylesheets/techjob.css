@@ -5,9 +5,66 @@
     margin-bottom: 24px;
 }
 
+/* Waiting room (games/new)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#reception {
+    margin-top: 10vh;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-areas:
+    "desk clock"
+    "desk chair";
+    grid-gap: 4px;
+}
+
+#reception-desk {
+    background-image:  url(Reception.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    max-width: 640px; 
+    grid-area: desk;
+}
+
+#clock {
+    background-image: url(Clock.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    min-height: 100px;
+    grid-area: clock;
+}
+
+#reception > form.button_to {
+    background-image: url(StartInterview.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    min-height: 200px;
+    min-width: 200px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    grid-area: chair;
+}
+
+#reception > form.button_to:hover {
+    background-image: url(StartInterviewHover.svg);
+}
+
+#waiting-chair {
+    color: var(--primary-dark-color);
+    height: 100%;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    grid-area: chair;
+}
+
 
 .page-title {
-    /* The Software Interview Game (on home page) */
     font-size: 24px;
     font-weight: 500;
 }
@@ -42,7 +99,6 @@ footer {
     width: 40vw;
     height: 2.5rem;
     background-color: rgb(1, 22, 39);
-
 }
 
 small {
