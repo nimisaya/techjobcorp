@@ -25,9 +25,10 @@ let my_json = ""
 // total questions (questions.length) used for changing questions
 let total_questions = ""
 //current question - used for changing pages
-let current_question = 1
+let current_question = 0
 //current score - updated when correct question is answered
 let current_score = 0
+let correct = false
 
 
 $(document).ready(function () {
@@ -48,6 +49,8 @@ $(document).ready(function () {
     console.log(data)
     my_json=data
     console.log(my_json)
+//appends puzzle data to HTML when API data has been loaded
+    update_question()
 //determins the total number of questions - sets variable
     total_questions=data.questions.length
   })
@@ -67,6 +70,17 @@ $('#incorrect_a').text(check_question.incorrect_a)
 $('#incorrect_b').text(check_question.incorrect_b)
 $('#incorrect_c').text(check_question.incorrect_c)
 $('#current_score').text(current_score)
+
+
+// This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
+
+if(correct === true){
+$('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
+}
+else {
+  $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
+
+}
 }
 
 
@@ -88,19 +102,19 @@ $("#next").click(function() {
   }
 })
 
-//back button
-$("#back" ).click(function() {
-  console.log('back')
-//checks if current page is equal to or less than question 0 (index)
-   if(current_question >= 0){
-//function checks which radio button has been clicked - adds score
-     check_radio()
-     current_question--
-     update_question()
-     console.log(current_question)
-
-}
-})
+// //back button
+// $("#back" ).click(function() {
+//   console.log('back')
+// //checks if current page is equal to or less than question 0 (index)
+//    if(current_question >= 0){
+// //function checks which radio button has been clicked - adds score
+//      check_radio()
+//      current_question--
+//      update_question()
+//      console.log(current_question)
+//
+// }
+// })
 
 
 // SCORE CHECK FUNCTION - FOR MANDAA //
@@ -109,12 +123,15 @@ function check_radio() {
    if($('#correct').is(':checked')) {
 // 2. if correct button has been checked add +100 to scores
   current_score = current_score+100
+// changes "correct" variable to true. This will be used to animate a gif if previous answeer is correct or false
+  correct = true
   console.log(current_score)
   }
 //3. if incorrect button has been clicked minus 30 from the score
   else{
     current_score = current_score-30
       console.log(current_score)
+      correct = false
   }
 }
 
