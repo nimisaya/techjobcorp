@@ -36,6 +36,10 @@ let correct = false
 let previous_question = ""
 let correct_answer = ""
 
+// Second timer (appended to html for stop watch)
+let second_timer = 0
+let minute_timer = 0
+
 
 $(document).ready(function () {
 
@@ -163,8 +167,22 @@ function check_radio() {
   }
 }
 
+
+// on screen timer
+window.onload = setInterval(function(){
+  // append time on each loop
+  $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
+
+  // if seconds = 59 add to minute variable
+  if (second_timer === 59){
+    minute_timer = minute_timer+1
+    //resent seconds timer
+    second_timer = 0
+
+  }
+  else second_timer = second_timer + 1
+
+}, 1000)
+
+//end document.ready
 })
-
-
-// REECE'S WIP getting post working (anyone can continue this! <3)
-// $.post( "test.php", { score: current_score} )
