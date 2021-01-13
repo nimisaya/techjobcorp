@@ -73,10 +73,14 @@ $('#incorrect_b').text(check_question.incorrect_b)
 $('#incorrect_c').text(check_question.incorrect_c)
 $('#current_score').text(current_score)
 
+//this stores previous question data to be used for feedback
 previous_question = check_question.question
 correct_answer = check_question.solution
 // This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
 
+
+// IF statement that changes the interviewers face depending on the previous answer
+if(current_question != 0){
 if(correct === true){
 $('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
 $('#answer').text('Your previous answer was correct!')
@@ -84,7 +88,7 @@ $('#answer').text('Your previous answer was correct!')
 else {
   $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
   $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
-
+}
 
 }
 }
