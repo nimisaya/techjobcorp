@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   resources :games
 
   #  Create route for end of game
-  get 'games/:id/gameover' => 'games#gameover'
+  get 'games/:id/gameover' => 'games#gameover', as: 'games_gameover'
 
 
 get "/api/puzzles/:id" => 'games#puzzles'

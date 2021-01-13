@@ -67,11 +67,16 @@ class GamesController < ApplicationController
 
     def edit
       @game = Game.find params[:id]
+      # redirect_to games_gameover(game.id)
+      redirect_to root_path
+
     end
 
     def update
       game = Game.find params[:id]
       game.update game_params
+      redirect_to games_gameover_url(game.id)
+
     end
 
     def destroy

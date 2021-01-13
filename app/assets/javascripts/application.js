@@ -81,6 +81,9 @@ $('#incorrect_b').text(check_question.incorrect_b)
 $('#incorrect_c').text(check_question.incorrect_c)
 $('#current_score').text(current_score)
 
+// if(current_question === total_questions){
+//   $('#submit_quiz').fadeTo(10, 1)
+// }
 
 // IF statement that changes the interviewers face depending on the previous answer
 if(current_question != 0){

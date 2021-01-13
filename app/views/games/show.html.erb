@@ -35,3 +35,18 @@
 <script>
 var game_id = <%= params[:id]%>;
 </script>
+
+
+<div id="submit_quiz">
+<%= form_with model: @game, local: true, html: { multipart: true} do |f| %>
+
+
+<%= f.label :score %>
+<%= f.text_field :score %>
+
+
+<%= f.submit  %>
+
+
+<% end %>
+</div>
