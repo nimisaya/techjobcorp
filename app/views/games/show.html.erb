@@ -1,17 +1,46 @@
+<article>
+    <header>
+        <blockquote id="answer"></blockquote>
+        <h2 id="question" class="page-title"><h2>
+    </header>
+    <section>
+        <div>
+            <label>
+                <input type="radio" id="correct" >
+                <span class="label-body" id="solution">Option A</span>
+            </label>
+            
+            <label>
+                <input type="radio" id="incorrect" >
+                <span class="label-body" id="incorrect_b">Option B</span>
+            </label>
+            
+            <label>
+                <input type="radio" id="incorrect" >
+                <span class="label-body" id="incorrect_c">Option C</span>
+            </label>
+            
+            <label>
+                <input type="radio" id="incorrect" >
+                <span class="label-body" id="incorrect_a">Option D</span>
+            </label>
+        </div>
+    </section>
 
+</article>
 
-
+<%# 
 
 <h1>Games#show</h1>
 
 <div> Current score </div>
 <div id=current_score> 0 </div>
 
-<img src="https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg" id=animation alt="interviewer">
+<img src="https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg" id=animation alt="interviewer"> %>
 
-<ul id = answer> </ul>
-<ul id = question> </ul>
-<input type="checkbox" id="correct">
+<%# <ul id = answer> </ul>
+<ul id = question> </ul> %>
+<%# <input type="checkbox" id="correct">
 <ul id = solution> </ul>
 <input type="checkbox" id="incorrect">
 <ul id = incorrect_a> </ul>
@@ -19,7 +48,7 @@
 <ul id = incorrect_b> </ul>
 <input type="checkbox" id="incorrect">
 <ul id = incorrect_c> </ul>
-
+ %>
 
 
 
@@ -33,5 +62,5 @@
 
 
 <script>
-var game_id = <%= params[:id]%>;
+    var game_id = <%= params[:id]%>;
 </script>
