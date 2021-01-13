@@ -1,6 +1,35 @@
+<article>
+    <header>
+        <blockquote id="answer"></blockquote>
+        <h2 id="question" class="page-title"><h2>
+    </header>
+    <section>
+        <div>
+            <label>
+                <input type="radio" id="correct" name="option">
+                <span class="label-body" id="solution">Option A</span>
+            </label>
+            
+            <label>
+                <input type="radio" id="incorrect" name="option">
+                <span class="label-body" id="incorrect_b">Option B</span>
+            </label>
+            
+            <label>
+                <input type="radio" id="incorrect" name="option">
+                <span class="label-body" id="incorrect_c">Option C</span>
+            </label>
+            
+            <label>
+                <input type="radio" id="incorrect" name="option">
+                <span class="label-body" id="incorrect_a">Option D</span>
+            </label>
+        </div>
+    </section>
 
+</article>
 
-
+<%# 
 
 
 
@@ -9,9 +38,9 @@
 
 <img src="https://piskel-imgstore-b.appspot.com/img/1db07bc5-558c-11eb-804a-3587bbd7da8a.gif" id=animation alt="interviewer">
 
-<ul id = answer> </ul>
-<ul id = question> </ul>
-<input type="checkbox" id="correct">
+<%# <ul id = answer> </ul>
+<ul id = question> </ul> %>
+<%# <input type="checkbox" id="correct">
 <ul id = solution> </ul>
 <input type="checkbox" id="incorrect">
 <ul id = incorrect_a> </ul>
@@ -19,7 +48,7 @@
 <ul id = incorrect_b> </ul>
 <input type="checkbox" id="incorrect">
 <ul id = incorrect_c> </ul>
-
+ %>
 
 
 
@@ -33,7 +62,7 @@
 
 
 <script>
-var game_id = <%= params[:id]%>;
+    var game_id = <%= params[:id]%>;
 </script>
 
 
