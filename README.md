@@ -10,6 +10,9 @@ Preparing for your first interview as a software developer (web)? Well, we have 
 ^ Tech job corp is an artificial fake news non-existent maybe not real company
 
 ## Link
+Heroku Link -- https://tech-job-corp-quiz.herokuapp.com/
+GitHub link -- https://github.com/nimisaya/techjobcorp
+
 
 
 ## Tech

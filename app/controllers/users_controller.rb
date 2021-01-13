@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
 
         # Direct user to home
-        redirect_to root_path
+        redirect_to new_game_path
 
       else
       # Account creation failed

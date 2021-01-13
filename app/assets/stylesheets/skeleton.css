@@ -211,8 +211,8 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  color: #333;
-  border-color: #888;
+  color: var(--hover-link-color);
+  border-color: var(--hover-link-color);
   outline: 0; }
 .button.button-primary,
 button.button-primary,

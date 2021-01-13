@@ -31,10 +31,18 @@
     margin-right: auto;
 }
 
+.footer{
+  padding-bottom: 2.5rem;
+  margin-left: 17vw;
+}
+
 footer {
-    /* Sticky footer */
-    position: fixed;
-    bottom: 24px;
+  position: absolute;
+    bottom: 0;
+    width: 40vw;
+    height: 2.5rem;
+    background-color: rgb(1, 22, 39);
+
 }
 
 small {

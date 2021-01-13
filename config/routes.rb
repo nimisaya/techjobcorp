@@ -2,7 +2,11 @@ Rails.application.routes.draw do
 
   # Root path
   root to: 'pages#home'
+<<<<<<< HEAD
 
+=======
+ post '/users/:id' => 'users#show' #show page for users personal leaderboard
+>>>>>>> d872ebe7536899a0ad86675ebe4b322ec7d249ae
   # Create routes for users
   # users     GET    /users(.:format)          users#index
   #           POST   /users(.:format)          users#create

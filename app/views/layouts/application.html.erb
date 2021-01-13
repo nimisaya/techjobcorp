@@ -10,7 +10,7 @@
         <%= favicon_link_tag asset_path('techcorp-favicon.svg') %>
   </head>
 
-  <body> 
+  <body>
     <div class="container">
       <header>
         <nav aria-label="Account menu">
@@ -36,9 +36,11 @@
         <main>
           <%= yield %>
         </main>
+        </div>  <!-- end of div.container -->
+        <div class='footer'>
         <footer>
           <small>&copy; <%= link_to "Brooke", "https://github.com/dutchessoflx", :target => "_blank" %>, <%= link_to "Lucy", "https://github.com/LucySE/", :target => "_blank" %>, <%= link_to "Manda", "https://github.com/nimisaya", :target => "_blank" %> and <%= link_to "Reece", "https://github.com/reecen96", :target => "_blank" %>, 2021</small>
         </footer>
-      </div> <!-- div.container -->
+      </div> <!-- div.footer -->
   </body>
 </html>
