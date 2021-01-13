@@ -36,7 +36,7 @@ let correct = false
 let previous_question = ""
 let correct_answer = ""
 
-// Second timer (appended to html for stop watch)
+// TIMER (appended to html for stop watch)
 let second_timer = 0
 let minute_timer = 0
 
@@ -169,18 +169,27 @@ function check_radio() {
 
 
 // on screen timer
+// THIS CODE IS A MESS - need to clean
 window.onload = setInterval(function(){
-  // append time on each loop
-  $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
+
 
   // if seconds = 59 add to minute variable
   if (second_timer === 59){
     minute_timer = minute_timer+1
     //resent seconds timer
     second_timer = 0
+    $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
 
   }
-  else second_timer = second_timer + 1
+  if (second_timer <= 10){
+  second_timer = second_timer + 1
+  $('#timer').text("This is a timer - could use?: "+minute_timer+ " : 0"+second_timer)
+}
+
+  if (second_timer >= 10){
+    second_timer = second_timer + 1
+    $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
+  }
 
 }, 1000)
 
