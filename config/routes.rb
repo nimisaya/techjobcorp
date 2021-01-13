@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # Root path
   root to: 'pages#home'
- 
+
   # Create routes for users
   # users     GET    /users(.:format)          users#index
   #           POST   /users(.:format)          users#create
@@ -44,4 +44,6 @@ Rails.application.routes.draw do
   #  Create route for end of game
   get 'games/:id/gameover' => 'games#gameover'
 
+
+get "/api/puzzles/:id" => 'games#puzzles'
 end

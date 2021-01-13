@@ -61,3 +61,6 @@ gem "httparty", "~> 0.18.1"
 
 # Use ActiveModel has_secure_password to ensure password is encrypted using bcrypt
 gem 'bcrypt', '~> 3.1.7'
+
+#add Jquery
+gem 'jquery-rails'

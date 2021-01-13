@@ -1,16 +1,31 @@
+
+
+
+
 <h1>Games#show</h1>
 
 
-<ul>
-<% @puzzle.each do |p| %>
+<div id="update_me"> <div>
 
-<p> <strong><%== p.question %> </strong></p>
-<li><%== p.solution %> </li>
-<li> <%== p.incorrect_a %> </li>
-<li> <%== p.incorrect_b %> </li>
-<li> <%== p.incorrect_c %> </li>
-<br>
-<%end%>
-</ul>
+
+<ul id = question> </ul>
+<ul id = solution> </ul>
+<ul id = incorrect_a> </ul>
+<ul id = incorrect_b> </ul>
+<ul id = incorrect_c> </ul>
+
+
+
+
+
+<button type="button" class = move_button id = back>Back</button>
+<button type="button" class = move_button id = next>Next</button>
+
+
 
 <%# PLACEHOLDER: To view the game over page add /gameover to the end of this url %>
+
+
+<script>
+var game_id = <%= params[:id]%>;
+</script>
