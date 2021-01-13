@@ -17,7 +17,7 @@
 
 let output = ""
 let my_json = ""
-let total_questions = 2
+let total_questions = ""
 let current_question = 0
 
 
@@ -35,28 +35,10 @@ console.log($)
     console.log(data)
     my_json=data
     console.log(my_json)
+    total_questions=data.questions.length
   })
 
- }; // getSearchResults()
-
- // function set_api(){
-// my_json = output.responseJSON
-// total_questions = my_json.length
-// console.log("output:" + output)
-// console.log("my_json:" + my_json)
-// console.log("total_questions" + total_questions)
-//  }
-
-
-
-
-// function displaySearchResults(){
-//   console.log('displaySearchResults')
-//   output = ($.getJSON.done('/api/puzzles/'+game_id))
-//   my_json = output.responseJSON
-// }
-
-
+ };
 
 
 function update_question(){
@@ -76,6 +58,8 @@ $("#next").click(function() {
   if(current_question <= total_questions){
     current_question++
     update_question()
+    console.log(current_question)
+
   }
 })
 
@@ -84,6 +68,7 @@ $("#back" ).click(function() {
    if(current_question >= 0){
      current_question--
      update_question()
+     console.log(current_question)
 
 }
 })
