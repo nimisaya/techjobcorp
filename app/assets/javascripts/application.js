@@ -46,6 +46,7 @@ let total_time = 0
 let salary = 0
 
 
+//-------------------PUT FUNCTION-------------------//
 //PUTs score, in_progress and salary for the current game
 function put_score(){
 
@@ -62,6 +63,7 @@ function put_score(){
 }
 
 
+//-------------------CALCULATE SALARY FUNCTION-------------------//
 // Calculate users salary based on their score and time
 function calculateSalary(){
 
@@ -105,6 +107,9 @@ $(document).ready(function () {
 // checks is jquery is working
   console.log($)
 
+
+
+//-----------------GET PUZZLE APIS-------------------//
 //retrives APIs from http://localhost:3000/api/puzzles/:id
  function getPuzzles(){
 
@@ -128,6 +133,8 @@ $(document).ready(function () {
 }; // end of getPuzzles
 
 
+//----------------SHUFFLE MULTIPLE CHOICE ANSWERS-------------------//
+
 // Function shuffles multiple choice answers (Array of answers)
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -136,6 +143,8 @@ function shuffleArray(array) {
   }
 }
 
+
+//-----------------UPDATE QUESTIONS-------------------//
 // this function updates the Questions & Score when next/back is clicked
 function update_question(){
 
@@ -204,6 +213,7 @@ function update_question(){
 
 
 
+//-----------------NEXT BUTTON-------------------//
 // next button
 $("#next").click(function() {
   console.log('NEXT')
@@ -225,7 +235,9 @@ $("#next").click(function() {
 }) //end next button function
 
 
-// SCORE CHECK FUNCTION - FOR MANDAA //
+
+//-----------------CHECK RADIO BUTTONS-------------------//
+// SCORE CHECK FUNCTION  //
 function check_radio() {
 
 // 1. checks if correct radio button has been checked
@@ -247,8 +259,8 @@ function check_radio() {
   }
 }
 
-// on screen timer
-// THIS CODE IS A MESS - need to clean
+
+//-----------------TIMER-------------------//
 window.onload = setInterval(function(){
   total_time = total_time + 1
 
@@ -273,6 +285,7 @@ window.onload = setInterval(function(){
 }, 1000) //end onscreen timer
 
 
+//-----------------START TIMER-------------------//
 window.onload = setInterval(function(){
 $("#finish").click(function() {
   calculateSalary()
@@ -280,8 +293,3 @@ $("#finish").click(function() {
 })
 }, 10)
 })
-
-
-
-// REECE'S WIP getting post working (anyone can continue this! <3)
-// $.post( "test.php", { score: current_score} )
