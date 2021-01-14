@@ -1,17 +1,39 @@
 <h1>Welcome <%= @current_user.username%></h1>
-
 <p>Your Score History</p>
-<ul>
-  <% @games.each do |g| %>
-  <li>ID: <%= g.id%></li>
 
-  <li>Currently in progress:<%= g.in_progress%></li>
-  <li>Time Game Started: <%= g.created_at%></li>
-  <li>Last played: <%= g.updated_at%></li>
-  <li>Total Game Time: <%= g.game_time%></li>
-  <li>Score: <%= g.score%></li>
-  <br>
-  <%end%>
-</ul>
+<!-- Table containing top unique salaries (Note: User only appears <= 1) -->
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Game Number</th>
+                <th>Date of Interview</th>
+                <th>Date Interview Concluded</th>
+                <th>Length of Interview</th>
+                <th>Score</th>
+                <th>Salary</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+          <% if @games.present? %>
+            <% @games.each do |g| %>
+            <tr>
+              <td><%= g.id%></td>
+              <td><%= g.created_at%>></td>
+              <td><%= g.updated_at%>></td>
+              <td><%= g.game_time%></td>
+              <td<%= g.score%></td>
+              <td<%= g.salary%></td>
+            </tr>
+            <%end%>
+          <% else %>
+            <tr>
+              <td>Play a Game and your results will show up here</td>
+          <% end %>
+            </tr>
+</tbody>
+</table> <!-- table.u-full-width -->
+
 
 <%= link_to "Return to Home Page", new_game_path %>
