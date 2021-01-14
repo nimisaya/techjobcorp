@@ -42,6 +42,7 @@
                 <%= button_to "Get Hired", action: "create" %>
             <% else %>
                 <%= link_to "Apply for a job", new_user_path, class: "button button-primary", title: "Create account" %>
+                <%= link_to "Login to Take the Interview", login_path,class: "button button-secondary" %>
             <%end%>
         </nav>
 </article>

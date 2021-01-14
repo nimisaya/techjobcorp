@@ -5,7 +5,7 @@
     </header>
 
       <div id= timer></div>
-      
+
     <section>
         <div>
             <label>
@@ -67,6 +67,7 @@
 
 <script>
     var game_id = <%= params[:id]%>;
+    
 </script>
 
 
@@ -76,8 +77,8 @@
 
 <%# NEED HIDDEN FIELDS FOR FOR SCORE & TIME COMPLETED!! %>
 
-<%= f.label :score %>
-<%= f.text_field :score %>
+
+
 
 
 <%= f.submit  %>
