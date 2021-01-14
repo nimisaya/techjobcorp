@@ -12,19 +12,30 @@
         </header>
         <p>
             The late nights, exams, group projects (oh the humanity...), billions of resumes and it’s all come down to this...the interview!
-            <br />
-            <br />
+        </p>
+        <p>
             Well, we got you fam. Apply for the job at our 100% totally legit Tech Job Corp*. At Tech Job Corp we believe in ping pong tables, pointing at post-its, lines on whiteboards and slathering your laptop in stickers. Just submit your resume below and we’ll see you at your interview.
         </p>
     </section>
 
     <section>
+        <!-- Menu buttons -->
         <nav aria-label="Game menu" class="main-menu">
-            <%= link_to 'Apply for Tech Job Corp', new_user_path, class: "button button-primary", title: "Sign up" %>
+            <!-- User is logged in and has played before -->
+            <% if @current_user.present? && @current_user.games.present? %>
+                <%= link_to "Increase your Salary", new_game_path, title: "Play again", class: "button button-primary" %>
+                <%= link_to "Review your interview history", user_path(@current_user.id), class: "button button-secondary",title: "See your Score History" %>
+            <!-- User is logged in -->
+            <% elsif @current_user.present? %>
+                <%= link_to "Get Hired", new_game_path, class: "button button-primary" %>
+            <!-- Guest -->
+            <% else %>
+                <%= link_to 'Apply for Tech Job Corp', new_user_path, class: "button button-primary", title: "Sign up" %>
+                <%= link_to 'Login', login_path, class: "button button-secondary" %>
+            <%end%>
 
-            <%= link_to 'Login', login_path, class: "button button-secondary" %>
+            <%= link_to 'View our top employees', games_path, class: "button button-secondary", title: "See Leaderboard"%>
 
-            <%=link_to 'View our top employees', games_path, class: "button button-secondary", title: "See Leaderboard"%>
         </nav>
     </section>
             <p>

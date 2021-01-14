@@ -49,21 +49,12 @@ function put_score(){
       url: '/games/'+game_id,
       data: { _method:'PUT', game: {score:current_score, in_progress:false} },
       dataType: 'json',
-      success: change_page()
+      success: window.location.replace(game_id+"/gameover")
 
       }
   );
 }
 
-
-// Time delay for changing page
-function change_page(){
-  setTimeout(
-  function()
-  {
-window.location.replace(game_id+"/gameover")
-}, 1000);
-}
 
 
 $(document).ready(function () {
@@ -112,8 +103,7 @@ function update_question(){
 
   if (current_question === total_questions-1){
     console.log("END QUESTION")
-    $('#next').css('opacity',0)
-    $('#finish').css('opacity',1)
+    $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>")
   }
 
   // Set the question
@@ -145,11 +135,13 @@ function update_question(){
   $('#optionC').html(answersArray[2]);
   $('#optionD').html(answersArray[3]);
 
-  $('#current_score').text(current_score)
+  $('#current_score').text("Points: " + current_score)
 
   //this stores previous question data to be used for feedback
   previous_question = check_question.question
   correct_answer = check_question.solution
+
+
   // This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
 
   // IF statement that changes the interviewers face depending on the previous answer
@@ -252,8 +244,6 @@ window.onload = setInterval(function(){
 $("#finish").click(function() {
   put_score()
 })
-
-
 
 })
 
