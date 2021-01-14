@@ -39,52 +39,58 @@ let correct_answer = ""
 // TIMER (appended to html for stop watch)
 let second_timer = 0
 let minute_timer = 0
+let total_time = 0
 
 
-console.log("post_score")
+//Salary value
+let salary = 0
 
+
+//PUTs score, in_progress and salary for the current game
 function put_score(){
+
   $.ajax({
       type: "PUT",
       url: '/games/'+game_id,
-      data: { _method:'PUT', game: {score:current_score, in_progress:false} },
+      data: { _method:'PUT', game: {score:current_score, in_progress:false, salary:salary }},
       dataType: 'json',
+      //Redirected to gameover page once post has been sent succesfully
       success: window.location.replace(game_id+"/gameover")
 
       }
   );
 }
 
-// function delayed_load(){
-//   setTimeout(
-//     function()
-//     {
-//      window.location.replace(game_id+"/gameover")
-//    }, 1000);
-//
-// } - seems to cause questions not to load to begin with
 
 // Calculate users salary based on their score and time
-const calculateSalary = (score, numberOfQuestions, timeTakenInSeconds) => {
+function calculateSalary(){
 
   const k = 1000;
   const timeBonus = 40 * k;
 
   // To get full bonus you must complete each question in half a minute
-  const fastestRequiredTime = numberOfQuestions * 30;
+  const fastestRequiredTime = total_questions * 30;
 
   // This is a made up time penalty based on every minute of the fastest time
-  let timePenalty = (timeTakenInSeconds - fastestRequiredTime) * 1000
+  let timePenalty = (total_time - fastestRequiredTime) * 1000
 
   // The time penalty will never be a negative number
   if (timePenalty >= timeBonus) {
     timePenalty = timeBonus;
   }
 
-  const salary = score / numberOfQuestions * (100 * k) + timeBonus - timePenalty;
+  // Income (total salary) is calculated
+  let income = current_score / total_questions * (100 * k) + timeBonus - timePenalty;
 
-  return salary;
-}
+  //Lowest allowable income is $30,000.00 (minimum salary)
+  if (income <= 30000){
+    salary = 30000
+  }
+  else {
+    salary = income
+  }
+
+} // End calculateSalary
 
 
 
@@ -121,6 +127,8 @@ $(document).ready(function () {
 
 }; // end of getPuzzles
 
+
+// Function shuffles multiple choice answers (Array of answers)
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -134,8 +142,8 @@ function update_question(){
   // question is pulled using [current_question] as an index
   const check_question = my_json.questions[current_question]
 
+  // When final question is reached the finish button appears
   if (current_question === total_questions-1){
-    console.log("END QUESTION")
     // $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>") --- no longer needed
     $("#next").css({display : 'none'})
     $("#finish").css({opacity :1})
@@ -166,11 +174,13 @@ function update_question(){
 
   shuffleArray(answersArray);
 
+  // Appends multiple choice answers to the HTML (after shuffling)
   $('#optionA').html(answersArray[0]);
   $('#optionB').html(answersArray[1]);
   $('#optionC').html(answersArray[2]);
   $('#optionD').html(answersArray[3]);
 
+  //Updates the current score on the HTML
   $('#current_score').text("Points: " + current_score)
 
   //this stores previous question data to be used for feedback
@@ -190,7 +200,7 @@ function update_question(){
       $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
     }
   }
-}
+} //end update_question function
 
 
 
@@ -212,21 +222,7 @@ $("#next").click(function() {
     console.log(current_question)
 
   }
-})
-
-// //back button
-// $("#back" ).click(function() {
-//   console.log('back')
-// //checks if current page is equal to or less than question 0 (index)
-//    if(current_question >= 0){
-// //function checks which radio button has been clicked - adds score
-//      check_radio()
-//      current_question--
-//      update_question()
-//      console.log(current_question)
-//
-// }
-// })
+}) //end next button function
 
 
 // SCORE CHECK FUNCTION - FOR MANDAA //
@@ -254,7 +250,7 @@ function check_radio() {
 // on screen timer
 // THIS CODE IS A MESS - need to clean
 window.onload = setInterval(function(){
-
+  total_time = total_time + 1
 
   // if seconds = 59 add to minute variable
   if (second_timer === 59){
@@ -274,10 +270,12 @@ window.onload = setInterval(function(){
     $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
   }
 
-}, 1000)
+}, 1000) //end onscreen timer
+
 
 window.onload = setInterval(function(){
 $("#finish").click(function() {
+  calculateSalary()
   put_score()
 })
 }, 10)
