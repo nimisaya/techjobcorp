@@ -64,6 +64,29 @@ function put_score(){
 //
 // } - seems to cause questions not to load to begin with
 
+// Calculate users salary based on their score and time
+const calculateSalary = (score, numberOfQuestions, timeTakenInSeconds) => {
+
+  const k = 1000;
+  const timeBonus = 40 * k;
+
+  // To get full bonus you must complete each question in half a minute
+  const fastestRequiredTime = numberOfQuestions * 30;
+
+  // This is a made up time penalty based on every minute of the fastest time
+  let timePenalty = (timeTakenInSeconds - fastestRequiredTime) * 1000
+
+  // The time penalty will never be a negative number
+  if (timePenalty >= timeBonus) {
+    timePenalty = timeBonus;
+  }
+
+  const salary = score / numberOfQuestions * (100 * k) + timeBonus - timePenalty;
+
+  return salary;
+}
+
+
 
 
 
