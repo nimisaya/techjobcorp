@@ -140,6 +140,13 @@ function update_question(){
   //this stores previous question data to be used for feedback
   previous_question = check_question.question
   correct_answer = check_question.solution
+  previous_question_2 = my_json.questions[current_question-1].question
+  correct_answer_2 = my_json.questions[current_question-1].solution
+  console.log('prev', previous_question);
+  console.log('correct', correct_answer);
+  console.log('prev2', previous_question_2);
+  console.log('correct2', correct_answer_2);
+
   // This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
 
   // IF statement that changes the interviewers face depending on the previous answer
