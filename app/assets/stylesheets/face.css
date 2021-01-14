@@ -1,0 +1,140 @@
+.scale-down {
+    zoom: 0.8;
+    -moz-transform: scale(0.8);
+}
+
+.face-centering {
+    display: flex;
+    justify-content: center;
+    align-items: left;
+}
+  
+#hair {
+    z-index: 1;
+    position: relative;
+    top: -40px;
+    background: rgba(0,0,0,0);
+    height: 80px;
+    width: 200px;
+    margin-bottom: 8px;
+    border-radius: 50% 50% 40% 40%;
+}
+
+#face {
+    z-index: -3;
+    height: 200px;
+    width: 200px;
+    background: PeachPuff;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#nose {
+    width: 24px;
+    height: 24px;
+    background: PeachPuff;
+    /*   border: 2px solid rgba(255, 239, 213, 0.9); */
+    border-radius: 50%;
+    position: relative;
+    top: -26px;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+}
+
+#eyes, #cheeks, #ears {
+    display: flex;
+    flex-direction: row;
+}
+
+#eyes, #cheeks, #animated-lips {
+    position: relative;
+    top: -30px;
+}
+
+.ear {
+    position: relative;
+    top: 100px;
+    z-index: -4;
+    background: PeachPuff;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    margin-left:90px;
+    margin-right:90px;
+}
+
+.cheek {
+    background: #F5A9A9;
+    border-radius: 50%;
+    height: 14px;
+    width: 20px;
+    margin-top: 4px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 12px;
+}
+
+.eye {
+    background: #011627;
+    border-radius: 50% 50% 25% 25%;
+    height: 24px;
+    width: 22px;
+    margin-left:25px;
+    margin-right:25px;
+    margin-bottom: 4px;
+}
+
+
+#animated-lips {
+    z-index: -1;
+    background:LightCoral;
+    border-radius: 50% 45% 50% 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation-duration: 0.8s;
+    animation-name: open-close-mouth;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+
+}
+
+#animated-inner-lips {
+    position: relative;
+    background: #011627;
+    border-radius: 50% 50% 50% 50%;
+    animation-duration: 0.8s;
+    animation-name: open-close-inner-mouth;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes open-close-mouth {
+    0% { 
+        width: 80px;
+        height: 50px;
+        transform:scale(90%);
+    }
+    100% {
+        width: 85px;
+        height: 25px;
+    }
+}
+
+@keyframes open-close-inner-mouth {
+    0% { 
+        width: 60px;
+        height: 25px;
+        transform:scale(90%);
+    }
+    100% {
+        width: 60px;
+        height: 4px;
+    }
+}
+
