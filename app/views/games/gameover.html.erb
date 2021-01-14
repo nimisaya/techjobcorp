@@ -39,8 +39,8 @@
     <div class="spacer"></div>
     <section>
         <nav aria-label="Game menu" class="main-menu">
-            <%=link_to 'Meet your top collegues', games_path, class: "button button-primary" %>
-            <%= button_to 'Interview again for a pay rise', action: "create", class: "button button-secondary"  %>
+            <%=link_to 'Meet your top collegues', games_path, class: "button button-primary", title: "View Leaderboard"%>
+            <%= button_to 'Interview again for a pay rise', action: "create", class: "button button-secondary", title: "Play again"  %>
         </nav>
     </section>
     <%end%>
