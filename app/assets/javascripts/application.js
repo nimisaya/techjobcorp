@@ -49,20 +49,20 @@ function put_score(){
       url: '/games/'+game_id,
       data: { _method:'PUT', game: {score:current_score, in_progress:false} },
       dataType: 'json',
-      success: delayed_load()
+      success: window.location.replace(game_id+"/gameover")
 
       }
   );
 }
 
-function delayed_load(){
-  setTimeout(
-    function()
-    {
-     window.location.replace(game_id+"/gameover")
-   }, 1000);
-
-}
+// function delayed_load(){
+//   setTimeout(
+//     function()
+//     {
+//      window.location.replace(game_id+"/gameover")
+//    }, 1000);
+//
+// } - seems to cause questions not to load to begin with
 
 
 
@@ -113,7 +113,10 @@ function update_question(){
 
   if (current_question === total_questions-1){
     console.log("END QUESTION")
-    $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>")
+    // $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>") --- no longer needed
+    $("#next").css({display : 'none'})
+    $("#finish").css({opacity :1})
+
   }
 
   // Set the question
@@ -250,12 +253,13 @@ window.onload = setInterval(function(){
 
 }, 1000)
 
-
+window.onload = setInterval(function(){
 $("#finish").click(function() {
   put_score()
 })
-
+}, 10)
 })
+
 
 
 // REECE'S WIP getting post working (anyone can continue this! <3)
