@@ -78,7 +78,7 @@ class GamesController < ApplicationController
       # params[:page] = JSON.parse params[:page] if params[:page].is_a? String
 
       # redirect_to games_gameover_url(game.id)
-
+    # redirect_to root_path
     end
 
     def destroy

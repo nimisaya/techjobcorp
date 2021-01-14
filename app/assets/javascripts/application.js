@@ -47,9 +47,10 @@ function put_score(){
   $.ajax({
       type: "PUT",
       url: '/games/'+game_id,
-      data: { _method:'PUT', game: {score:current_score} },
+      data: { _method:'PUT', game: {score:current_score, in_progress:false} },
       dataType: 'json',
-      success: console.log('Sent patch')
+      success: window.location.replace(game_id+"/gameover")
+
       }
   );
 }
@@ -60,7 +61,7 @@ $(document).ready(function () {
 
 // actions function to retreive api data
   getPuzzles()
-  console.log("ready!")
+
 
 // checks is jquery is working
   console.log($)
@@ -75,7 +76,7 @@ $(document).ready(function () {
   $.getJSON('/api/puzzles/'+game_id).done((data)=>{
     console.log(data)
     my_json=data
-    console.log(my_json)
+
 
   //appends puzzle data to HTML when API data has been loaded
   update_question()
@@ -239,7 +240,6 @@ window.onload = setInterval(function(){
 
 
 $("#finish").click(function() {
-  console.log("Finish statement")
   put_score()
 })
 
