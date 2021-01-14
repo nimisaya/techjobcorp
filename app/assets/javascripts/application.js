@@ -49,11 +49,21 @@ function put_score(){
       url: '/games/'+game_id,
       data: { _method:'PUT', game: {score:current_score, in_progress:false} },
       dataType: 'json',
-      success: window.location.replace(game_id+"/gameover")
+      success: delayed_load()
 
       }
   );
 }
+
+function delayed_load(){
+  setTimeout(
+    function()
+    {
+     window.location.replace(game_id+"/gameover")
+   }, 1000);
+
+}
+
 
 
 
