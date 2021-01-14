@@ -35,6 +35,9 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   <br>
+  <input type="hidden" name="user[profile_picture]" value="" id="profile_picture">
+  <button id="upload_widget" class="cloudinary-button">upload profile picture</button>
+    <br>
   <%= f.submit "Let's play", :class => 'button-primary' %><br />
   <%= link_to 'Cancel', root_path, class: 'button button-secondary', title: "Home" %>
   <p><small>Already applied for Tech Job Corp.? <%= link_to 'Login', login_path %></small></p>
@@ -43,14 +46,23 @@
 <script>
   var myWidget = cloudinary.createUploadWidget({
     cloudName: 'do9y9tnbr',
-    uploadPreset: 'kzqevlztT'}, (error, result) => {
+    uploadPreset: 'kzqevlzt'
+  },
+  (error, result) => {
       if (!error && result && result.event === "success") {
         console.log('Done! Here is the image info: ', result.info);
+        $("#profile_picture").val(result.info.public_id);
+        console.log(result.info.public_id);
+        console.log($("#profile_picture").val());
+      } else {
+        console.log('error',error);
       }
+
     }
   )
 
-  document.getElementById("upload_widget").addEventListener("click", function(){
+  document.getElementById("upload_widget").addEventListener("click", function(ev){
+      ev.preventDefault();
       myWidget.open();
     }, false);
   </script>
