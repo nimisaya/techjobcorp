@@ -103,7 +103,7 @@ function update_question(){
 
   if (current_question === total_questions-1){
     console.log("END QUESTION")
-    $('#buttons').html("<button type='button' class = move_button id =finish >Finish Quiz</button>")
+    $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>")
   }
 
   // Set the question
