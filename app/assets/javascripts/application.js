@@ -140,25 +140,21 @@ function update_question(){
   //this stores previous question data to be used for feedback
   previous_question = check_question.question
   correct_answer = check_question.solution
-  previous_question_2 = my_json.questions[current_question-1].question
-  correct_answer_2 = my_json.questions[current_question-1].solution
-  console.log('prev', previous_question);
-  console.log('correct', correct_answer);
-  console.log('prev2', previous_question_2);
-  console.log('correct2', correct_answer_2);
+
 
   // This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
 
   // IF statement that changes the interviewers face depending on the previous answer
-  if(current_question != 0){
-    if(correct === true){
-      $('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
-      $('#answer').text('Your previous answer was correct!')
-    } else {
-      $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
-      $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
-    }
-  }
+  // if(current_question != 0){
+  //   if(correct === true){
+  //     $('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
+  //     $('#answer').text('Your previous answer was correct!')
+  //   } else {
+  //     $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
+  //     $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
+  //   }
+  // }--- currently tells user if they answered the last question incorrect tell them what the answer to the next question is (tried using previous_question = my_json.questions[current_question-1].question
+  // correct_answer = my_json.questions[current_question-1].solution but for some reason this breaks the next question button and you can no longer progress in the quiz)
 }
 
 
