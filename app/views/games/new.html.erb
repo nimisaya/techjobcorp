@@ -23,12 +23,8 @@
 </section>
 
 <section>
-    <nav aria-label="Game menu" class="main-menu">
+    <nav aria-label="Game menu">
         <%= button_to "Impatiently start interview", {action: "create"}, {class: "button button-primary",title: "Play game"} %>
-        <%= link_to 'View our top employees', games_path, {class: "button button-secondary", title: "See Everyone's Highscores"} %>
-        <% if @current_user.games.exists?%>
-            <%= link_to 'View your Interview History', user_path(@current_user.id), class: "button button-secondary", title: "See only Your Highscores" %>
-        <%end%>
     </nav>
 </section>
 
