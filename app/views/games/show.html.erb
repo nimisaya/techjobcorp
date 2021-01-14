@@ -1,87 +1,29 @@
 <article>
     <header>
+        <div id= timer></div>
         <blockquote id="answer"></blockquote>
         <h2 id="question" class="page-title"><h2>
     </header>
-
-      <div id= timer></div>
-      
     <section>
-        <div>
-            <label>
-                <input type="radio" id="correct" name="option">
-                <span class="label-body" id="solution">Option A</span>
-            </label>
-
-            <label>
-                <input type="radio" id="incorrect" name="option">
-                <span class="label-body" id="incorrect_b">Option B</span>
-            </label>
-
-            <label>
-                <input type="radio" id="incorrect" name="option">
-                <span class="label-body" id="incorrect_c">Option C</span>
-            </label>
-
-            <label>
-                <input type="radio" id="incorrect" name="option">
-                <span class="label-body" id="incorrect_a">Option D</span>
-            </label>
-        </div>
+​
+        <div id="optionA"></div>
+        <div id="optionB"></div>
+        <div id="optionC"></div>
+        <div id="optionD"></div>
     </section>
-
+​
 </article>
 
-<%#
 
 
 
-<h4> Current score </h4>
-<div id=current_score> 0 </div>
+<div id=buttons>
+<button type="button" class = move_button id = next>Next question</button>
+</div>
 
-<img src="https://piskel-imgstore-b.appspot.com/img/1db07bc5-558c-11eb-804a-3587bbd7da8a.gif" id=animation alt="interviewer">
-
-<%# <ul id = answer> </ul>
-<ul id = question> </ul> %>
-<%# <input type="checkbox" id="correct">
-<ul id = solution> </ul>
-<input type="checkbox" id="incorrect">
-<ul id = incorrect_a> </ul>
-<input type="checkbox" id="incorrect">
-<ul id = incorrect_b> </ul>
-<input type="checkbox" id="incorrect">
-<ul id = incorrect_c> </ul>
- %>
-
-
-
-<!--
-<button type="button" class = move_button id = back>Back</button> -->
-<button type="button" class = move_button id = next>Submit</button>
-
-
-
-<%# PLACEHOLDER: To view the game over page add /gameover to the end of this url %>
 
 
 
 <script>
     var game_id = <%= params[:id]%>;
 </script>
-
-
-<div id="submit_quiz">
-<%= form_with model: @game, local: true, html: { multipart: true} do |f| %>
-
-
-<%# NEED HIDDEN FIELDS FOR FOR SCORE & TIME COMPLETED!! %>
-
-<%= f.label :score %>
-<%= f.text_field :score %>
-
-
-<%= f.submit  %>
-
-
-<% end %>
-</div>

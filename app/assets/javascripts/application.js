@@ -41,6 +41,21 @@ let second_timer = 0
 let minute_timer = 0
 
 
+console.log("post_score")
+
+function put_score(){
+  $.ajax({
+      type: "PUT",
+      url: '/games/'+game_id,
+      data: { _method:'PUT', game: {score:current_score} },
+      dataType: 'json',
+      success: console.log('Sent patch')
+      }
+  );
+}
+
+
+
 $(document).ready(function () {
 
 // actions function to retreive api data
@@ -53,59 +68,89 @@ $(document).ready(function () {
 //retrives APIs from http://localhost:3000/api/puzzles/:id
  function getPuzzles(){
 
-//game_id is retreived from the HTML
-     output = $.getJSON('/api/puzzles/'+game_id)
+  //game_id is retreived from the HTML
+    output = $.getJSON('/api/puzzles/'+game_id)
 
-//outputs the API request and convers to an array (my_json)
+  //outputs the API request and convers to an array (my_json)
   $.getJSON('/api/puzzles/'+game_id).done((data)=>{
     console.log(data)
     my_json=data
     console.log(my_json)
 
-//appends puzzle data to HTML when API data has been loaded
-    update_question()
+  //appends puzzle data to HTML when API data has been loaded
+  update_question()
 
-//determins the total number of questions - sets variable
-    total_questions=data.questions.length
+  //determines the total number of questions - sets variable
+  total_questions=data.questions.length
+
   })
 
 }; // end of getPuzzles
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
 // this function updates the Questions & Score when next/back is clicked
 function update_question(){
 
-// question is pulled using [current_question] as an index
-const check_question = my_json.questions[current_question]
+  // question is pulled using [current_question] as an index
+  const check_question = my_json.questions[current_question]
 
-$('#question').text(check_question.question)
-$('#solution').text(check_question.solution)
-$('#incorrect_a').text(check_question.incorrect_a)
-$('#incorrect_b').text(check_question.incorrect_b)
-$('#incorrect_c').text(check_question.incorrect_c)
-$('#current_score').text(current_score)
+  if (current_question === total_questions-1){
+    console.log("END QUESTION")
+    $('#buttons').html("<button type='button' class = move_button id =finish >Finish Quiz</button>")
+  }
 
-// if(current_question === total_questions){
-//   $('#submit_quiz').fadeTo(10, 1)
-// }
+  // Set the question
+  $('#question').html(check_question.question)
 
-// IF statement that changes the interviewers face depending on the previous answer
-if(current_question != 0){
-if(correct === true){
-$('#animation').attr("src","https://piskel-imgstore-b.appspot.com/img/9a414811-558c-11eb-b96b-3587bbd7da8a.gif")
-$('#answer').text('Your previous answer was correct!')
-}
-else {
-  $('#animation').attr("src","https://piskel-imgstore-b.appspot.com/img/dff8dfdc-558c-11eb-b412-3587bbd7da8a.gif")
-  $('#answer').text('Your previous answer was incorrect. The answer to the question ' + previous_question + ' was '+ correct_answer)
-}
+  // Set the options
+  let optionA = "<label>" +
+  "<input type='radio' id='incorrect' name='option'>" +
+  "<span class='label-body' id='incorrect_a'>"+ check_question.incorrect_a + "</span></label>";
 
-}
+  let optionB = "<label>" +
+  "<input type='radio' id='incorrect' name='option'>" +
+  "<span class='label-body' id='incorrect_b'>"+ check_question.incorrect_b + "</span></label>";
 
-//this stores previous question data to be used for feedback
-previous_question = check_question.question
-correct_answer = check_question.solution
-// This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
+  let optionC = "<label>" +
+  "<input type='radio' id='incorrect' name='option'>" +
+  "<span class='label-body' id='incorrect_c'>"+ check_question.incorrect_c + "</span></label>";
+
+  let answer = "<label>" +
+  "<input type='radio' id='correct' name='option'>" +
+  "<span class='label-body' id='solution'>"+ check_question.solution + "</span></label>";
+
+  const answersArray = [optionA, optionB, optionC, answer];
+
+  shuffleArray(answersArray);
+
+  $('#optionA').html(answersArray[0]);
+  $('#optionB').html(answersArray[1]);
+  $('#optionC').html(answersArray[2]);
+  $('#optionD').html(answersArray[3]);
+
+  $('#current_score').text(current_score)
+
+  //this stores previous question data to be used for feedback
+  previous_question = check_question.question
+  correct_answer = check_question.solution
+  // This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
+
+  // IF statement that changes the interviewers face depending on the previous answer
+  if(current_question != 0){
+    if(correct === true){
+      $('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
+      $('#answer').text('Your previous answer was correct!')
+    } else {
+      $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
+      $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
+    }
+  }
 }
 
 
@@ -167,7 +212,6 @@ function check_radio() {
   }
 }
 
-
 // on screen timer
 // THIS CODE IS A MESS - need to clean
 window.onload = setInterval(function(){
@@ -193,5 +237,14 @@ window.onload = setInterval(function(){
 
 }, 1000)
 
-//end document.ready
+
+$("#finish").click(function() {
+  console.log("Finish statement")
+  put_score()
 })
+
+})
+
+
+// REECE'S WIP getting post working (anyone can continue this! <3)
+// $.post( "test.php", { score: current_score} )
