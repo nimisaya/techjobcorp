@@ -1,30 +1,48 @@
-<h1>Leader Board of Hired Employees</h1>
+<article>
+    <header class="centering">
+        <%= image_tag 'TechCorpLogo.svg', alt: "Tech Job Corp", id: "game-logo" %>
+    </header>
+    <br/>
+    <section>
+        <header>
+            <h1 class="page-title">
+                Our top employees
+            </h1>
+        </header>
+        <%# Table containing top unique salaries (Note: User only appears <= 1) %>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Hired</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+            
+                <tbody>
+                    <% @games.each do |g|%>
+                        <tr>
+                            <td><%= g.user.username %></td>
+                            <td><time datetime=<%= g.updated_at %>><%= g.updated_at %></time></td>
+                            <%# TODO: CHANGE TO g.salary ONCE SALARY ADDED TO MODEL %>
+                            <td><%= g.score %></td>
+                        </tr>
+                    <% end %>
 
-<% @games.each do |g|%>
-<span> Applicant Name:
-<%= g.user.username %>
-</span><br>
-<span> Salary: $
-<%= g.score %>
-</span><br>
-<span> Date Hired:
-<%= g.updated_at %>
-</span><br>
-<span> Length of Interview:
-<%= g.created_at - g.updated_at %>
-</span><br>
-<br/>
-<% end %>
+                </tbody>
+            </table> <!-- table.u-full-width -->
+    </section>
 
-<% if @current_user.present?%>
-
-<% if @current_user.games.exists?%>
-<%= button_to "Increase your Salary", action: "create" %>
-<%= button_to "Or Review your Previous interviews", user_path(@current_user.id), class: "button button-secondary" %>
-<% else %>
-<%= button_to "Get Hired", action: "create" %>
-<%end%>
-<% else %>
-<%= link_to "Login to Take the Interview", login_path,class: "button button-secondary" %><br>
-<%= link_to 'Are you new here? Sign up!', new_user_path,class: "button button-secondary"  %>
-<%end%>
+<%# Menu buttons %>
+        <nav aria-label="Game menu" class="main-menu">
+            <% if @current_user.present? && @current_user.games.present? %>
+                <%= button_to "Increase your Salary", {action: "create"}, {title: "Play again", class: "button button-primary"} %>
+                <%= button_to "Review your Previous interviews", user_path(@current_user.id), class: "button button-secondary" %>
+            <% elseif @current_user.present? %>
+                <%= button_to "Get Hired", action: "create" %>
+            <% else %>
+                <%= link_to "Apply for a job", new_user_path, class: "button button-primary", title: "Create account" %>
+                <%= link_to "Login to Take the Interview", login_path,class: "button button-secondary" %>
+            <%end%>
+        </nav>
+</article>
