@@ -36,29 +36,23 @@ let correct_answer = ""
 // TIMER (appended to html for stop watch)
 let second_timer = 0
 let minute_timer = 0
-let total_time = 0
 
 
-//Salary value
-let salary = 0
+console.log("post_score")
 
-
-//-------------------PUT FUNCTION-------------------//
-//PUTs score, in_progress and salary for the current game
 function put_score(){
-
   $.ajax({
       type: "PUT",
       url: '/games/'+game_id,
-      data: { _method:'PUT', game: {score:current_score, in_progress:false, salary:salary }},
+      data: { _method:'PUT', game: {score:current_score, in_progress:false} },
       dataType: 'json',
-      //Redirected to gameover page once post has been sent succesfully
       success: window.location.replace(game_id+"/gameover")
 
       }
   );
 }
 
+<<<<<<< HEAD
 
 //-------------------CALCULATE SALARY FUNCTION-------------------//
 // Calculate users salary based on their score and time
@@ -91,6 +85,16 @@ function calculateSalary(){
 
 } // End calculateSalary
 
+=======
+// function delayed_load(){
+//   setTimeout(
+//     function()
+//     {
+//      window.location.replace(game_id+"/gameover")
+//    }, 1000);
+//
+// } - seems to cause questions not to load to begin with
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
 
 
@@ -101,6 +105,7 @@ $(document).ready(function () {
     getPuzzles()
 
 
+<<<<<<< HEAD
   // checks is jquery is working
     console.log($)
 
@@ -108,6 +113,10 @@ $(document).ready(function () {
   //-----------------GET PUZZLE APIS-------------------//
   //retrives APIs from http://localhost:3000/api/puzzles/:id
    function getPuzzles(){
+=======
+//retrives APIs from http://localhost:3000/api/puzzles/:id
+ function getPuzzles(){
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
     //1. outputs the API request and convers to an array (my_json)
     $.getJSON('/api/puzzles/'+game_id).done((data)=>{
@@ -125,6 +134,7 @@ $(document).ready(function () {
   }; // end of getPuzzles
 
 
+<<<<<<< HEAD
 
 
   //----------------SHUFFLE MULTIPLE CHOICE ANSWERS-------------------//
@@ -136,13 +146,32 @@ $(document).ready(function () {
     }
   }
 
+=======
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// this function updates the Questions & Score when next/back is clicked
+function update_question(){
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
   //-----------------UPDATE QUESTIONS-------------------//
   // this function updates the Questions & Score when next/back is clicked
   function update_question(){
 
+<<<<<<< HEAD
     // question is pulled using [current_question] as an index
     const check_question = my_json.questions[current_question]
+=======
+  if (current_question === total_questions-1){
+    console.log("END QUESTION")
+    // $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>") --- no longer needed
+    $("#next").css({display : 'none'})
+    $("#finish").css({opacity :1})
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
     // When final question is reached the finish button appears
     if (current_question === total_questions-1){
@@ -177,6 +206,7 @@ $(document).ready(function () {
     //shuffle answers
     shuffleArray(answersArray);
 
+<<<<<<< HEAD
     // Appends multiple choice answers to the HTML (after shuffling)
     $('#optionA').html(answersArray[0]);
     $('#optionB').html(answersArray[1]);
@@ -185,6 +215,14 @@ $(document).ready(function () {
 
     //Updates the current score on the HTML
     $('#current_score').text("Points: " + current_score)
+=======
+  $('#optionA').html(answersArray[0]);
+  $('#optionB').html(answersArray[1]);
+  $('#optionC').html(answersArray[2]);
+  $('#optionD').html(answersArray[3]);
+
+  $('#current_score').text("Points: " + current_score)
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
     //this stores previous question data to be used for feedback
     previous_question = check_question.question
@@ -203,6 +241,7 @@ $(document).ready(function () {
         $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
       }
     }
+<<<<<<< HEAD
   } //end update_question function
 
 
@@ -211,6 +250,16 @@ $(document).ready(function () {
   // next button
   $("#next").click(function() {
     console.log('NEXT')
+=======
+  }
+}
+
+
+
+// next button
+$("#next").click(function() {
+  console.log('NEXT')
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
   // checks if current page is less than maximum page (last question)
     if(current_question <= total_questions){
@@ -225,14 +274,37 @@ $(document).ready(function () {
       update_question()
       console.log(current_question)
 
+<<<<<<< HEAD
     }
   }) //end next button function
+=======
+  }
+})
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
+
+// //back button
+// $("#back" ).click(function() {
+//   console.log('back')
+// //checks if current page is equal to or less than question 0 (index)
+//    if(current_question >= 0){
+// //function checks which radio button has been clicked - adds score
+//      check_radio()
+//      current_question--
+//      update_question()
+//      console.log(current_question)
+//
+// }
+// })
 
 
-
+<<<<<<< HEAD
   //-----------------CHECK RADIO BUTTONS-------------------//
   // SCORE CHECK FUNCTION  //
   function check_radio() {
+=======
+// SCORE CHECK FUNCTION - FOR MANDAA //
+function check_radio() {
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
   // 1. checks if correct radio button has been checked
      if($('#correct').is(':checked')) {
@@ -253,10 +325,17 @@ $(document).ready(function () {
     }
   }
 
+<<<<<<< HEAD
 
   //-----------------TIMER-------------------//
   window.onload = setInterval(function(){
     total_time = total_time + 1
+=======
+// on screen timer
+// THIS CODE IS A MESS - need to clean
+window.onload = setInterval(function(){
+
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
 
     // if seconds = 59 add to minute variable
     if (second_timer === 59){
@@ -271,6 +350,7 @@ $(document).ready(function () {
     $('#timer').text("This is a timer - could use?: "+minute_timer+ " : 0"+second_timer)
   }
 
+<<<<<<< HEAD
     if (second_timer >= 10){
       second_timer = second_timer + 1
       $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
@@ -290,3 +370,18 @@ $(document).ready(function () {
 
 
 }) // END document.ready
+=======
+}, 1000)
+
+window.onload = setInterval(function(){
+$("#finish").click(function() {
+  put_score()
+})
+}, 10)
+})
+
+
+
+// REECE'S WIP getting post working (anyone can continue this! <3)
+// $.post( "test.php", { score: current_score} )
+>>>>>>> 0b892ed43f3d551b58ab89033a5cf21589641c65
