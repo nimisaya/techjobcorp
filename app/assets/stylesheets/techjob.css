@@ -113,3 +113,18 @@ small {
     padding-right: 24px;
     padding-bottom: 4px;
 }
+ /* CSS for gameover page ID card overlay */
+#security{
+  position: relative;
+  width: 400px;
+  height: 267px;
+}
+#ID_card{
+  width: 100%;
+  height: 100%;
+}
+#profile_image{
+  position: absolute;
+  bottom: 14px;
+  left: 25px;
+}
