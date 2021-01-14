@@ -49,21 +49,12 @@ function put_score(){
       url: '/games/'+game_id,
       data: { _method:'PUT', game: {score:current_score, in_progress:false} },
       dataType: 'json',
-      success: change_page()
+      success: window.location.replace(game_id+"/gameover")
 
       }
   );
 }
 
-
-// Time delay for changing page
-function change_page(){
-  setTimeout(
-  function()
-  {
-window.location.replace(game_id+"/gameover")
-}, 1000);
-}
 
 
 $(document).ready(function () {
@@ -112,8 +103,7 @@ function update_question(){
 
   if (current_question === total_questions-1){
     console.log("END QUESTION")
-    $('#next').css('opacity',0)
-    $('#finish').css('opacity',1)
+    $('#buttons').html("<button type='button' class = move_button id =finish >Finish Quiz</button>")
   }
 
   // Set the question
@@ -150,18 +140,21 @@ function update_question(){
   //this stores previous question data to be used for feedback
   previous_question = check_question.question
   correct_answer = check_question.solution
+
+
   // This will be used to animate the expression of the interviewer depending on whether the previous answer was true/false
 
   // IF statement that changes the interviewers face depending on the previous answer
-  if(current_question != 0){
-    if(correct === true){
-      $('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
-      $('#answer').text('Your previous answer was correct!')
-    } else {
-      $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
-      $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
-    }
-  }
+  // if(current_question != 0){
+  //   if(correct === true){
+  //     $('#animation').attr("src","https://tjn-blog-images.s3.amazonaws.com/wp-content/uploads/2017/04/20155740/should-stop-smiling-at-work.jpg")
+  //     $('#answer').text('Your previous answer was correct!')
+  //   } else {
+  //     $('#animation').attr("src","https://i.ibb.co/DMzPhDT/sad-face.jpg")
+  //     $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
+  //   }
+  // }--- currently tells user if they answered the last question incorrect tell them what the answer to the next question is (tried using previous_question = my_json.questions[current_question-1].question
+  // correct_answer = my_json.questions[current_question-1].solution but for some reason this breaks the next question button and you can no longer progress in the quiz)
 }
 
 
@@ -252,8 +245,6 @@ window.onload = setInterval(function(){
 $("#finish").click(function() {
   put_score()
 })
-
-
 
 })
 
