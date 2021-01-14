@@ -135,7 +135,7 @@ function update_question(){
   $('#optionC').html(answersArray[2]);
   $('#optionD').html(answersArray[3]);
 
-  $('#current_score').text(current_score)
+  $('#current_score').text("Points: " + current_score)
 
   //this stores previous question data to be used for feedback
   previous_question = check_question.question
