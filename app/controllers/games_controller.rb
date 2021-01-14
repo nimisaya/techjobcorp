@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 
-    before_action :check_if_logged_in, only: [:create]
+    before_action :check_if_logged_in, except: [:index]
 
     def new
       @game = Game.new

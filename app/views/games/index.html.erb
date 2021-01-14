@@ -16,10 +16,15 @@
 <br/>
 <% end %>
 
+<% if @current_user.present?%>
 
 <% if @current_user.games.exists?%>
 <%= button_to "Increase your Salary", action: "create" %>
 <%= button_to "Or Review your Previous interviews", user_path(@current_user.id), class: "button button-secondary" %>
 <% else %>
 <%= button_to "Get Hired", action: "create" %>
+<%end%>
+<% else %>
+<%= link_to "Login to Take the Interview", login_path,class: "button button-secondary" %><br>
+<%= link_to 'Are you new here? Sign up!', new_user_path,class: "button button-secondary"  %>
 <%end%>
