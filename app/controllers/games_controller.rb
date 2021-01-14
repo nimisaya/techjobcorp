@@ -53,6 +53,7 @@ class GamesController < ApplicationController
 
 
     def gameover
+        @game = Game.where params[:profile_picture]
         @game = Game.find params[:id]
         @puzzle = Puzzle.where(game_id: params[:id])
     end
@@ -66,7 +67,7 @@ class GamesController < ApplicationController
     end
 
     def edit
-      @game = Game.find params[:id]
+      @game = Game.params[:id]
       # redirect_to games_gameover(game.id)
       redirect_to root_path
 
@@ -86,6 +87,6 @@ class GamesController < ApplicationController
 
     private
     def game_params
-      params.require(:game).permit(:in_progress, :user_id, :puzzle_id, :score, :game_time)
+      params.require(:game).permit(:in_progress, :user_id, :puzzle_id, :score, :game_time, :profile_picture)
     end
   end
