@@ -49,12 +49,21 @@ function put_score(){
       url: '/games/'+game_id,
       data: { _method:'PUT', game: {score:current_score, in_progress:false} },
       dataType: 'json',
-      success: window.location.replace(game_id+"/gameover")
+      success: change_page()
 
       }
   );
 }
 
+
+// Time delay for changing page
+function change_page(){
+  setTimeout(
+  function()
+  {
+window.location.replace(game_id+"/gameover")
+}, 1000);
+}
 
 
 $(document).ready(function () {
@@ -103,7 +112,8 @@ function update_question(){
 
   if (current_question === total_questions-1){
     console.log("END QUESTION")
-    $('#buttons').html("<button type='button' class = move_button id =finish >Finish Quiz</button>")
+    $('#next').css('opacity',0)
+    $('#finish').css('opacity',1)
   }
 
   // Set the question
@@ -242,6 +252,8 @@ window.onload = setInterval(function(){
 $("#finish").click(function() {
   put_score()
 })
+
+
 
 })
 
