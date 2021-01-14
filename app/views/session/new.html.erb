@@ -4,31 +4,30 @@
       <h1 class="page-title">Welcome back to Tech Job Corp.!</h1>
       <p>We knew you couldn't resist our offering. After all we are an inclusive company with friday night drinks every second sunday in the Bermuda triangle office.</p>
     </header>
+
+    <%# Print out an error message, if the SessionController set one %>
+    <% if flash[:error] %>
+        <br>
+        <strong>
+            <%= flash[:error] %>
+        </strong>
+    <% end %>
+
+    <%# Login form %>
+    <%= form_with url: login_path, local: true do |f| %> 
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <br />
+
+        <%= f.submit 'Login', class: 'button-primary' %>
+        <br />
+        <%= link_to 'Cancel', root_path, class: 'button button-secondary' %>
+    <% end %>
+    <p><small>First time at Tech Job Corp.? <%= link_to 'Create an account', new_user_path %></small></p>
   </section>
-
-
-<%# Print out an error message, if the SessionController set one %>
-<% if flash[:error] %>
-    <br>
-    <strong>
-        <%= flash[:error] %>
-    </strong>
-<% end %>
-
-<%# Login form %>
-<%= form_with url: login_path, local: true do |f| %> 
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-   
-    <br>
-
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    
-    <br>
-
-    <%= f.submit 'Login', class: 'button-primary' %>
-    <%= link_to 'Cancel', root_path, class: 'button button-secondary' %>
-<% end %>
 
 </article>

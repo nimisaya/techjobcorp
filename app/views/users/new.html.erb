@@ -2,7 +2,7 @@
   <section>
     <header>
       <h1 class="page-title">Welcome to Tech Job Corp.!</h1>
-      <p>We're so happy you've decided to apply. Submit your resume below and we'll get back to you shortly (...probably just ghost you).</p>
+      <p>We're so happy you've decided to apply. Submit your resume below and we'll get back to you shortly (*cough* ghost *cough*).</p>
     </header>
   </section>
 
@@ -30,7 +30,8 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   <br>
-  <%= f.submit "Let's play", :class => 'button-primary' %>
-  <%= link_to 'Cancel', root_path, :class => 'button button-secondary' %>
+  <%= f.submit "Let's play", :class => 'button-primary' %><br />
+  <%= link_to 'Cancel', root_path, class: 'button button-secondary', title: "Home" %>
+  <p><small>Already applied for Tech Job Corp.? <%= link_to 'Login', login_path %></small></p>
 <% end %> 
 </article>
