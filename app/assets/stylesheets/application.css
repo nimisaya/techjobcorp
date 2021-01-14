@@ -18,3 +18,8 @@
 #finish{
   opacity: 0
 }
+
+#animation{
+  height: 500px;
+  width: auto;
+}
