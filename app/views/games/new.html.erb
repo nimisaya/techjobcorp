@@ -1,11 +1,11 @@
 <% if @current_user.present? %>
 
 <section>
-    <%# 
+    <%#
         Grid displaying the reception area. Images:
             - Reception desk
             - Clock
-            - Seat (button creates game and takes user to game/new) 
+            - Seat (button creates game and takes user to game/new)
     %>
     <div id="reception">
         <div id="reception-desk">
@@ -24,13 +24,12 @@
 
 <section>
     <nav aria-label="Game menu" class="main-menu">
-        <%= button_to "Impatiently start interview", {action: "create"}, {class: "button button-primary"} %>
-        <%= link_to 'View our top employees', games_path, class: "button button-secondary" %>
+        <%= button_to "Impatiently start interview", {action: "create"}, {class: "button button-primary",title: "Play game"} %>
+        <%= link_to 'View our top employees', games_path, {class: "button button-secondary", title: "See Everyone's Highscores"} %>
         <% if @current_user.games.exists?%>
-            <%= link_to 'View your Interview History', user_path(@current_user.id), class: "button button-secondary" %>
+            <%= link_to 'View your Interview History', user_path(@current_user.id), class: "button button-secondary", title: "See only Your Highscores" %>
         <%end%>
     </nav>
 </section>
 
 <% end %>
-

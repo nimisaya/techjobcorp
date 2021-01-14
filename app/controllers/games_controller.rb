@@ -75,8 +75,10 @@ class GamesController < ApplicationController
     def update
       game = Game.find params[:id]
       game.update game_params
-      redirect_to games_gameover_url(game.id)
+      # params[:page] = JSON.parse params[:page] if params[:page].is_a? String
 
+      # redirect_to games_gameover_url(game.id)
+    # redirect_to root_path
     end
 
     def destroy
@@ -84,6 +86,6 @@ class GamesController < ApplicationController
 
     private
     def game_params
-      params.require(:game).permit(:status, :user_id, :puzzle_id, :score, :game_time)
+      params.require(:game).permit(:in_progress, :user_id, :puzzle_id, :score, :game_time)
     end
   end
