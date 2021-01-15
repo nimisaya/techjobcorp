@@ -52,11 +52,14 @@ function put_score(){
       url: '/games/'+game_id,
       data: { _method:'PUT', game: {score:current_score, in_progress:false, salary: salary} },
       dataType: 'json',
-      success: window.location.replace(game_id+"/gameover")
+      success:
+      setTimeout(function() {
+        window.location.replace(game_id+"/gameover")
+      }, 100)
 
-      }
-  );
+  });
 }
+
 
 
 //-------------------CALCULATE SALARY FUNCTION-------------------//
@@ -71,7 +74,7 @@ function calculateSalary(){
   const fastestRequiredTime = total_questions * 30;
 
   //3.  This is a made up time penalty based on every minute of the fastest time
-  let timePenalty = (total_time - fastestRequiredTime) * 1000
+  let timePenalty = (total_time/60 - fastestRequiredTime) * 1000
 
   //4.  The time penalty will never be a negative number
   if (timePenalty >= timeBonus) {
@@ -84,6 +87,9 @@ function calculateSalary(){
   //6. Lowest allowable income is $30,000.00 (minimum salary)
   if (income <= 30000){
     salary = 30000
+  }
+  if(income > 140000){
+    salary= 1400002
   }
   else {
     salary = income
@@ -283,14 +289,10 @@ function update_question(){
   }//end minute update
 
 
-  //-----------------START TIMER-------------------//
-  window.onload = setInterval(function(){
-    $("#finish").click(function() {
-      calculateSalary()
-      put_score()
-    })
-  }, 10)
 
-
+  $("#finish").click(function() {
+    calculateSalary()
+    put_score()
+  })
 
 }) // END document.ready
