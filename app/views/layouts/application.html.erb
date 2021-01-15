@@ -17,13 +17,13 @@
           <ul>
           <% if @current_user.present? %>
             <li id="greeting-user">
-              <%= @current_user.username %>
+              <strong><%= link_to  @current_user.username, user_path(@current_user.id), class: "profile-link" %></strong>
             </li>
             <li>
               <%= link_to 'Logout', login_path, method: 'delete' %>
             </li>
           <% else %>
-          
+
 
           <% end %>
           </ul>

@@ -61,9 +61,7 @@ class GamesController < ApplicationController
 
     def puzzles
       questions = Puzzle.where(game_id: params[:id])
-      render :json => {
-   :questions => questions
-  }
+      render :json => {:questions => questions }
     end
 
     def edit

@@ -1,37 +1,39 @@
-<h1>Welcome <%= @current_user.username%></h1>
-<%= link_to "Return to Home Page", new_game_path %>
-<p>Your Score History</p>
+<a href = '/'><%= image_tag 'TechCorpLogo.svg', alt: "Tech Job Corp", id: "game-logo", class: "centering" %></a>
+
+<h1 class="page-title">Welcome <%= @current_user.username%></h1>
+<p>Your Employment History at Tech Job Corp</p>
 
 <!-- Table containing top unique salaries (Note: User only appears <= 1) -->
-    <table class="u-full-width">
-        <thead>
-            <tr>
-                <th>Game Number</th>
-                <th>Date of Interview</th>
-                <th>Date Interview Concluded</th>
-                <th>Length of Interview</th>
-                <th>Score</th>
-                <th>Salary</th>
+<table class="u-full-width">
+    <thead>
+        <tr>
+            <th>Game</th>
+            <th>Date of Interview</th>
+            <!-- <th>Length of Interview</th> feature to be added -->
+            <th>Score</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
 
-            </tr>
-        </thead>
-
-        <tbody>
-          <% if @games.present? %>
-            <% @games.each do |g| %>
-            <tr>
-              <td><%= g.id%></td>
-              <td><%= g.created_at%>></td>
-              <td><%= g.updated_at%>></td>
-              <td><%= g.game_time%></td>
-              <td<%= g.score%></td>
-              <td<%= g.salary%></td>
-            </tr>
-            <%end%>
-          <% else %>
-            <tr>
-              <td>Play a Game and your results will show up here</td>
-          <% end %>
-            </tr>
-</tbody>
+    <tbody>
+      <% if @games.present? %>
+        <% @games.each do |g| %>
+        <tr>
+          <td><%= g.id%></td>
+          <td><%= g.updated_at.strftime('%d %b %Y %H:%M:%S')%></td>
+          <td><%# g.game_time%></td>
+          <td><%= g.score%></td>
+          <td>$<%= g.salary%></td>
+        </tr>
+        <%end%>
+      <% else %>
+        <tr>
+          <td>Play a Game and your results will show up here</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      <% end %>
+        </tr>
+  </tbody>
 </table> <!-- table.u-full-width -->
