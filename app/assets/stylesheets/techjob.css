@@ -131,12 +131,12 @@ small {
 }
 #security_name{
   position: absolute;
-  right: 35%;
-  top: 39%;
+  right: 127px;
+  bottom: 138px;
 }
 #employee_number{
   position: absolute;
-  right: 28%;
-  bottom: 35%;
+  right: 115px;
+  bottom: 93px;
 }
 /*cloudinary upload picture color change. */
