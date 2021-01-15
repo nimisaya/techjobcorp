@@ -6,14 +6,13 @@
 .face-centering {
     display: flex;
     justify-content: center;
-    align-items: left;
+    align-items: center;
 }
   
 #hair {
     z-index: 1;
     position: relative;
     top: -40px;
-    /*   background: rgba(0,0,0,0); */
     background: rgba(87,61,47,1);
     height: 80px;
     width: 200px;
