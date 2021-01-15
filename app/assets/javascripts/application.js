@@ -32,6 +32,7 @@ let current_score = 0
 let correct = false
 let previous_question = ""
 let correct_answer = ""
+let salary = 0
 
 // TIMER (appended to html for stop watch)
 let second_timer = 0
@@ -46,7 +47,7 @@ function put_score(){
   $.ajax({
       type: "PUT",
       url: '/games/'+game_id,
-      data: { _method:'PUT', game: {score:current_score, in_progress:false} },
+      data: { _method:'PUT', game: {score:current_score, in_progress:false, salary: salary} },
       dataType: 'json',
       success: window.location.replace(game_id+"/gameover")
 
@@ -59,24 +60,25 @@ function put_score(){
 // Calculate users salary based on their score and time
 function calculateSalary(){
 
+  //1. set variables
   const k = 1000;
   const timeBonus = 40 * k;
 
-  //1.  To get full bonus you must complete each question in half a minute
+  //2.  To get full bonus you must complete each question in half a minute
   const fastestRequiredTime = total_questions * 30;
 
-  //2.  This is a made up time penalty based on every minute of the fastest time
+  //3.  This is a made up time penalty based on every minute of the fastest time
   let timePenalty = (total_time - fastestRequiredTime) * 1000
 
-  //3.  The time penalty will never be a negative number
+  //4.  The time penalty will never be a negative number
   if (timePenalty >= timeBonus) {
     timePenalty = timeBonus;
   }
 
-  //4.  Income (total salary) is calculated
+  //5.  Income (total salary) is calculated
   let income = current_score / total_questions * (100 * k) + timeBonus - timePenalty;
 
-  //5. Lowest allowable income is $30,000.00 (minimum salary)
+  //6. Lowest allowable income is $30,000.00 (minimum salary)
   if (income <= 30000){
     salary = 30000
   }
@@ -95,10 +97,8 @@ $(document).ready(function () {
   // actions function to retreive api data
     getPuzzles()
 
-
   // checks is jquery is working
     console.log($)
-
 
   //-----------------GET PUZZLE APIS-------------------//
   //retrives APIs from http://localhost:3000/api/puzzles/:id
