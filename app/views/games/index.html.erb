@@ -17,7 +17,6 @@
                         <th>Hired</th>
                         <th>Salary</th>
                         <th>Score</th>
-
                     </tr>
                 </thead>
 
@@ -26,25 +25,19 @@
                     <% @games.each do |g|%>
                         <tr>
                             <td><%= g.user.username%></td>
-                            <td><time datetime=<%= g.updated_at %>><%= g.updated_at %></time></td>
+                            <td><time datetime=<%= g.updated_at %>><%= g.updated_at.strftime('%d %b %Y %H:%M:%S') %></time></td>
                             <td><%= g.salary %></td>
                             <td><%= g.score %></td>
                             <% end %>
-                            <% else %>
+                    <% else %>
                         <td>Want to be our first employee?</td>
                         <td>ASAP</td>
                         <td>$$$$$$$</td>
                         <td></td>
-
                     <% end %>
                 </tr>
-
-
-
-
-
-                </tbody>
-            </table> <!-- table.u-full-width -->
+            </tbody>
+        </table> <!-- table.u-full-width -->
     </section>
 
 <!-- Menu buttons -->

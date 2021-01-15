@@ -20,10 +20,10 @@
         <% @games.each do |g| %>
         <tr>
           <td><%= g.id%></td>
-          <td><%= g.updated_at%></td>
-          <td><%= g.game_time%></td>
+          <td><%= g.updated_at.strftime('%d %b %Y %H:%M:%S')%></td>
+          <td><%# g.game_time%></td>
           <td><%= g.score%></td>
-          <td><%= g.salary%></td>
+          <td>$<%= g.salary%></td>
         </tr>
         <%end%>
       <% else %>
