@@ -89,7 +89,7 @@ function calculateSalary(){
     salary = 30000
   }
   if(income > 140000){
-    salary= 1400002
+    salary= 140000
   }
   else {
     salary = income
