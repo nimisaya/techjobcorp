@@ -1,0 +1,42 @@
+<h1>Welcome <%= @current_user.username%></h1>
+
+<%= link_to "Return to Home Page", new_game_path %>
+<br>
+<br>
+
+<header>
+    <h1 class="page-title">
+        Your Top Scores
+    </h1>
+</header>
+<!-- Table containing top unique salaries (Note: User only appears <= 1) -->
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Game Number</th>
+                <th>Hired</th>
+                <th>Salary</th>
+                <th>Score</th>
+                <th>Total Game Time: </th>
+            </tr>
+        </thead>
+
+        <tbody>
+          <% if @games.present? %>
+            <% @games.each do |g|%>
+                <tr>
+                    <td><%=g.id%></td>
+                    <td><%= g.updated_at %></td>
+                    <td><%= g.salary %></td>
+                    <td><%= g.score %></td>
+                    <td><%= g.game_time %></td>
+
+                    <% end %>
+                    <% else %>
+                <td>Keep Track of your Past Interviews Here</td>
+                <td>ASAP</td>
+                <td>$$$$$$$</td>
+                <td></td>
+
+            <% end %>
+        </tr>

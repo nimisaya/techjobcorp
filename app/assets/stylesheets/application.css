@@ -26,15 +26,3 @@
 
 
 
-#timer {
-    font-family: 'Inconsolata', monospace;
-    margin:20px auto;
-		background: #34495e;
-    width:90px;
-    height:35px;
-    border-radius:7.5px;
-    color:#ecf0f1;
-    text-align:center;
-    line-height:35px;
-    font-size:20px
-}

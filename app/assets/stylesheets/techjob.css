@@ -118,6 +118,7 @@ small {
   position: relative;
   width: 400px;
   height: 267px;
+  margin: 0 auto;
 }
 #ID_card{
   width: 100%;
@@ -128,3 +129,4 @@ small {
   bottom: 14px;
   left: 25px;
 }
+/*cloudinary upload picture color change. */
