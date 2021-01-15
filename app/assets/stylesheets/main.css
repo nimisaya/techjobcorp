@@ -1,0 +1,22 @@
+/* Navigation */
+.app-nav {
+    margin: 48px;
+}
+
+.app-nav ul {
+    list-style-type: none;
+    text-align: right;
+    margin: 0;
+}
+
+.app-nav li {
+    display: inline;
+    padding: 12px;
+    margin-left: 4px;
+    transition: background-color 0.4s ease;
+}
+
+.app-nav li:hover {
+    background-color: var(--hover-colour);
+    border-radius: var( --button-radius);
+}
