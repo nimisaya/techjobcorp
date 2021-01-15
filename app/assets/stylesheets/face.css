@@ -13,18 +13,20 @@
     z-index: 1;
     position: relative;
     top: -40px;
-    background: rgba(0,0,0,0);
+    /*   background: rgba(0,0,0,0); */
+    background: rgba(87,61,47,1);
     height: 80px;
     width: 200px;
     margin-bottom: 8px;
-    border-radius: 50% 50% 40% 40%;
+    border-radius: 0% 50% 0% 40%;
 }
+  
 
 #face {
     z-index: -3;
     height: 200px;
     width: 200px;
-    background: PeachPuff;
+    background: linear-gradient(180deg, rgba(255,218,185,1) 0%, rgba(255,218,185,1) 60%, rgba(87,61,47,1) 100%);
     border-radius: 50%;
     display: flex;
     flex-direction: column;

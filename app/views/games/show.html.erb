@@ -1,42 +1,43 @@
 <article>
     <header>
-        <div id= timer></div>
-        <!-- <blockquote id="answer"></blockquote> -->
-        <%# <img id= animation src="https://piskel-imgstore-b.appspot.com/img/4db8baeb-5628-11eb-a6a2-2f8693b953d1.gif"> %>
 
-<%# Face animation - WIP (Manda) - refer to face.css %>
+<%# Face animation - refer to face.css %>
 <div class="scale-down">
 <div class="face-centering">
   <div id="face">
+
     <div id="ears">
       <div class="ear"></div>
       <div class="ear"></div>
-    </div>
+    </div><!-- div#ears -->
+
     <div id="hair"></div>
+
     <div id="eyes">
       <div class="eye"></div>
       <div class="eye"></div>
-    </div>
+    </div><!-- div#eyes -->
+
     <div id="nose"></div>
     <div id="cheeks">
       <div class="cheek"></div>
       <div class="cheek"></div>
-    </div>
+    </div><!-- div#cheeks -->
+
     <div id="animated-lips">
       <div id="animated-inner-lips"></div>
-    </div>
-  </div>
-</div>
-</div>
+    </div><!-- div#animated-lips -->
+
+  </div> <!-- div#face -->
+</div> <!-- div.face-centering -->
+</div> <!-- div.scale-down -->
+
+<%# Countdown timer refer to timer.css %>
+<div id= timer></div>
+
 
         <h2 id="question" class="page-title"><h2>
     </header>
-
-      <div id= timer></div>
-
-
-
-
 
 
     <section id=questions_clear>
@@ -60,8 +61,9 @@
 <button type='button' class = move_button id =finish >Finish Quiz</button>
 </div>
 
+<style>
 
-
+</style>
 
 <script>
     var game_id = <%= params[:id]%>;

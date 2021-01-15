@@ -35,10 +35,13 @@ let current_score = 0
 let correct = false
 let previous_question = ""
 let correct_answer = ""
+let salary = 0
 
 // TIMER (appended to html for stop watch)
 let second_timer = 0
 let minute_timer = 0
+let total_time=0
+let minutes = "00"
 
 
 console.log("post_score")
@@ -47,7 +50,7 @@ function put_score(){
   $.ajax({
       type: "PUT",
       url: '/games/'+game_id,
-      data: { _method:'PUT', game: {score:current_score, in_progress:false} },
+      data: { _method:'PUT', game: {score:current_score, in_progress:false, salary: salary} },
       dataType: 'json',
       success: window.location.replace(game_id+"/gameover")
 
@@ -55,29 +58,59 @@ function put_score(){
   );
 }
 
-// function delayed_load(){
-//   setTimeout(
-//     function()
-//     {
-//      window.location.replace(game_id+"/gameover")
-//    }, 1000);
-//
-// } - seems to cause questions not to load to begin with
+
+//-------------------CALCULATE SALARY FUNCTION-------------------//
+// Calculate users salary based on their score and time
+function calculateSalary(){
+
+  //1. set variables
+  const k = 1000;
+  const timeBonus = 40 * k;
+
+  //2.  To get full bonus you must complete each question in half a minute
+  const fastestRequiredTime = total_questions * 30;
+
+  //3.  This is a made up time penalty based on every minute of the fastest time
+  let timePenalty = (total_time - fastestRequiredTime) * 1000
+
+  //4.  The time penalty will never be a negative number
+  if (timePenalty >= timeBonus) {
+    timePenalty = timeBonus;
+  }
+
+  //5.  Income (total salary) is calculated
+  let income = current_score / total_questions * (100 * k) + timeBonus - timePenalty;
+
+  //6. Lowest allowable income is $30,000.00 (minimum salary)
+  if (income <= 30000){
+    salary = 30000
+  }
+  else {
+    salary = income
+  }
+
+} // End calculateSalary
+
 
 
 
 
 $(document).ready(function () {
 
-// actions function to retreive api data
-  getPuzzles()
+  // actions function to retreive api data
+    getPuzzles()
 
+  // checks is jquery is working
+    console.log($)
 
-// checks is jquery is working
-  console.log($)
+  //-----------------GET PUZZLE APIS-------------------//
+  //retrives APIs from http://localhost:3000/api/puzzles/:id
+   function getPuzzles(){
 
-//retrives APIs from http://localhost:3000/api/puzzles/:id
- function getPuzzles(){
+    //1. outputs the API request and convers to an array (my_json)
+    $.getJSON('/api/puzzles/'+game_id).done((data)=>{
+      console.log(data)
+      my_json=data
 
   //game_id is retreived from the HTML
     output = $.getJSON('/api/puzzles/'+game_id)
@@ -111,11 +144,15 @@ function update_question(){
   // question is pulled using [current_question] as an index
   const check_question = my_json.questions[current_question]
 
-  if (current_question === total_questions-1){
-    console.log("END QUESTION")
-    // $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>") --- no longer needed
-    $("#next").css({display : 'none'})
-    $("#finish").css({opacity :1})
+    // question is pulled using [current_question] as an index
+    const check_question = my_json.questions[current_question]
+
+    // When final question is reached the finish button appears
+    if (current_question === total_questions-1){
+      // $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>") --- no longer needed
+      $("#next").css({display : 'none'})
+      $("#finish").css({opacity :1})
+    }
 
   }
 
@@ -166,14 +203,14 @@ function update_question(){
       $('#animation').attr("src","https://piskel-imgstore-b.appspot.com/img/26014fe6-5628-11eb-9b50-2f8693b953d1.gif")
       $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
     }
-  }
-}
+  } //end update_question function
 
 
 
-// next button
-$("#next").click(function() {
-  console.log('NEXT')
+  //-----------------NEXT BUTTON-------------------//
+  // next button
+  $("#next").click(function() {
+    console.log('NEXT')
 
 // checks if current page is less than maximum page (last question)
   if(current_question <= total_questions){
@@ -188,26 +225,17 @@ $("#next").click(function() {
     update_question()
     console.log(current_question)
 
-  }
-})
-
-// //back button
-// $("#back" ).click(function() {
-//   console.log('back')
-// //checks if current page is equal to or less than question 0 (index)
-//    if(current_question >= 0){
-// //function checks which radio button has been clicked - adds score
-//      check_radio()
-//      current_question--
-//      update_question()
-//      console.log(current_question)
-//
-// }
-// })
+    }
+  }) //end next button function
 
 
-// SCORE CHECK FUNCTION - FOR MANDAA //
-function check_radio() {
+
+  //-----------------CHECK RADIO BUTTONS-------------------//
+  // SCORE CHECK FUNCTION  //
+  function check_radio() {
+
+  // 1. checks if correct radio button has been checked
+     if($('#correct').is(':checked')) {
 
 // 1. checks if correct radio button has been checked
    if($('#correct').is(':checked')) {
@@ -220,47 +248,54 @@ function check_radio() {
   console.log(current_score)
   }
 
-//3. if incorrect button has been clicked minus 30 from the score
-  else{
-    current_score = current_score-30
-      console.log(current_score)
-      correct = false
-  }
-}
 
-// on screen timer
-// THIS CODE IS A MESS - need to clean
-window.onload = setInterval(function(){
+  //-----------------TIMER-------------------//
+  window.onload = setInterval(function(){
+    total_time = total_time + 1
 
+    // if seconds = 59 add to minute variable
+    if (second_timer === 59){
+      minute_timer = minute_timer+1
+      minute_update()
+      //resent seconds timer
+      second_timer = 0
+      $('#timer').text(minutes+ ":"+second_timer)
 
-  // if seconds = 59 add to minute variable
-  if (second_timer === 59){
-    minute_timer = minute_timer+1
-    //resent seconds timer
-    second_timer = 0
-    $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
+    }
+    if (second_timer <= 10){
+      second_timer = second_timer + 1
+      $('#timer').text(minutes+ ":0"+second_timer)
+    }
 
-  }
-  if (second_timer <= 10){
-  second_timer = second_timer + 1
-  $('#timer').text("This is a timer - could use?: "+minute_timer+ " : 0"+second_timer)
-}
+    if (second_timer >= 10){
+      second_timer = second_timer + 1
+      $('#timer').text(minutes+ ":"+second_timer)
+    }
 
-  if (second_timer >= 10){
-    second_timer = second_timer + 1
-    $('#timer').text("This is a timer - could use?: "+minute_timer+ " : "+second_timer)
-  }
-
-}, 1000)
-
-window.onload = setInterval(function(){
-$("#finish").click(function() {
-  put_score()
-})
-}, 1000)
-})
+  }, 1000) //end onscreen timer
 
 
+  //-----------------MINUTE UPDATE-------------------//
 
-// REECE'S WIP getting post working (anyone can continue this! <3)
-// $.post( "test.php", { score: current_score} )
+  //updates minutes string (ie 01 as apposed to 1)
+  function minute_update(){
+    if (minute_timer === 0){
+      minutes = "00"
+    }
+    if (minute_timer < 10){
+      minutes = "0"+minute_timer
+    }
+  }//end minute update
+
+
+  //-----------------START TIMER-------------------//
+  window.onload = setInterval(function(){
+    $("#finish").click(function() {
+      calculateSalary()
+      put_score()
+    })
+  }, 10)
+
+
+
+}) // END document.ready
