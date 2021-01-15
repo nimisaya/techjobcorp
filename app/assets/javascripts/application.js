@@ -34,7 +34,7 @@ let previous_question = ""
 let correct_answer = ""
 
 // TIMER (appended to html for stop watch)
-let second_timer = 55
+let second_timer = 0
 let minute_timer = 0
 let total_time=0
 let minutes = "00"
@@ -259,17 +259,17 @@ $(document).ready(function () {
       minute_update()
       //resent seconds timer
       second_timer = 0
-      $('#timer').text(minutes+ " : "+second_timer)
+      $('#timer').text(minutes+ ":"+second_timer)
 
     }
     if (second_timer <= 10){
       second_timer = second_timer + 1
-      $('#timer').text(minutes+ " : 0"+second_timer)
+      $('#timer').text(minutes+ ":0"+second_timer)
     }
 
     if (second_timer >= 10){
       second_timer = second_timer + 1
-      $('#timer').text(minutes+ " : "+second_timer)
+      $('#timer').text(minutes+ ":"+second_timer)
     }
 
   }, 1000) //end onscreen timer
