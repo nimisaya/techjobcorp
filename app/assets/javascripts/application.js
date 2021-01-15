@@ -111,7 +111,7 @@ $(document).ready(function () {
     $.getJSON('/api/puzzles/'+game_id).done((data)=>{
       console.log(data)
       my_json=data
-
+});
   //game_id is retreived from the HTML
     output = $.getJSON('/api/puzzles/'+game_id)
 
@@ -144,9 +144,6 @@ function update_question(){
   // question is pulled using [current_question] as an index
   const check_question = my_json.questions[current_question]
 
-    // question is pulled using [current_question] as an index
-    const check_question = my_json.questions[current_question]
-
     // When final question is reached the finish button appears
     if (current_question === total_questions-1){
       // $('#buttons').html("<button type='button' class = 'move_button' id ='finish' >Finish Quiz</button>") --- no longer needed
@@ -154,7 +151,7 @@ function update_question(){
       $("#finish").css({opacity :1})
     }
 
-  }
+
 
   // Set the question
   $('#question').html(check_question.question)
@@ -203,6 +200,7 @@ function update_question(){
       $('#animation').attr("src","https://piskel-imgstore-b.appspot.com/img/26014fe6-5628-11eb-9b50-2f8693b953d1.gif")
       $('#answer').text('Your previous answer was false. The answer to the question ' + previous_question + ' was '+ correct_answer)
     }
+  }
   } //end update_question function
 
 
@@ -223,7 +221,7 @@ function update_question(){
 
 //runs function to update shown question & score
     update_question()
-    console.log(current_question)
+    // console.log(current_question)
 
     }
   }) //end next button function
@@ -233,10 +231,6 @@ function update_question(){
   //-----------------CHECK RADIO BUTTONS-------------------//
   // SCORE CHECK FUNCTION  //
   function check_radio() {
-
-  // 1. checks if correct radio button has been checked
-     if($('#correct').is(':checked')) {
-
 // 1. checks if correct radio button has been checked
    if($('#correct').is(':checked')) {
 
@@ -245,8 +239,9 @@ function update_question(){
 
 // changes "correct" variable to true. This will be used to animate a gif if previous answeer is correct or false
   correct = true
-  console.log(current_score)
+  // console.log(current_score)
   }
+}//end check_radio
 
 
   //-----------------TIMER-------------------//

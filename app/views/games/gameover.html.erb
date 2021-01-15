@@ -19,7 +19,7 @@
         <p>
             We are pleased to make you an offer of employment at Tech
             Job Corp. Your annual salary will be <strong>$ <%=@game.salary %></strong>.
-            
+
         </p>
         <p>
             Once you have signed your contract for eternal servitude, please collect your branded t-shirt, sticker and water bottle, and head to your assigned hotdesk. You now belong to us. Please find your security badge below.
@@ -46,7 +46,7 @@
     <section>
         <nav aria-label="Game menu" class="main-menu">
             <%=link_to 'Meet your top colleagues', games_path, class: "button button-primary", title: "View Leaderboard"%>
-            <%= button_to 'Interview again for a pay rise', action: "create", class: "button button-secondary", title: "Play again"  %>
+            <%= link_to 'Interview again for a pay rise', new_game_path, action: "create", class: "button button-secondary", title: "Play again"  %>
         </nav>
     </section>
     <%end%>
