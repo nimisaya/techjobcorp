@@ -1,8 +1,5 @@
 <article>
     <header>
-        <div id= timer></div>
-        <!-- <blockquote id="answer"></blockquote> -->
-        <%# <img id= animation src="https://piskel-imgstore-b.appspot.com/img/4db8baeb-5628-11eb-a6a2-2f8693b953d1.gif"> %>
 
 <%# Face animation - WIP (Manda) - refer to face.css %>
 <div class="scale-down">
@@ -28,11 +25,13 @@
   </div>
 </div>
 </div>
+<div id= timer></div>
+
 
         <h2 id="question" class="page-title"><h2>
     </header>
 
-      <div id= timer></div>
+
 
 
 
@@ -60,8 +59,9 @@
 <button type='button' class = move_button id =finish >Finish Quiz</button>
 </div>
 
+<style>
 
-
+</style>
 
 <script>
     var game_id = <%= params[:id]%>;
